@@ -17,6 +17,9 @@
             <div class="scrolling">
 
                 <a><img/>images to go here.</a>
+                <a><img/>images to go here.</a>
+                <a><img/>images to go here.</a>
+                <a><img/>images to go here.</a>
 
             </div>
 
