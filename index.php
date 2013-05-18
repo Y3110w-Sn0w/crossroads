@@ -23,11 +23,11 @@
 
             </div>
 
-            <div class="menu">
+            <nav>
 
                 <a><img/>Menu optoins here</a>
             
-            </div>
+            </nav>
 
         </div>
     </body>
