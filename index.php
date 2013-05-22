@@ -11,9 +11,9 @@
         </script>
     </head>
     <body>
-        <div class="main">
+        <div class="main-wrapper">
 
-            <h1><span>C</span><span>R</span><span>O</span><span>S</span><span>S</span><span>R</span><span>O</span><span>A</span><span>D</span><span>S</span></h1>
+            <h1 class="top-bar"><span>C</span><span>R</span><span>O</span><span>S</span><span>S</span><span>R</span><span>O</span><span>A</span><span>D</span><span>S</span></h1>
 
             <div class="scrolling">
 
@@ -24,10 +24,14 @@
 
             </div>
 
-            <nav>
+            <nav class="navigation">
 
-                <a><img/>Menu optoins here</a>
-                <a href=""><img src="">Booyah</a>
+                <a><img/>&#35;</a>
+                <a><img/>&#43;</a>
+                <a><img/>&#48;</a>
+                <a><img/>&#64;</a>
+                <a><img/>&#42;</a>
+                <a><img/>&#45;</a>
             
             </nav>
 
