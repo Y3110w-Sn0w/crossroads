@@ -12,37 +12,62 @@ section {
 }
 
 body {
-	background-color: #000000;
+	background-color: #212121;
 	margin: 0;
 	padding: 0;
 }
 
+/*	Setting the outer limits	*/
 .main-wrapper {
-	background-color: #212121;
+	position: absolute;
 	color: #FFFFFF;
-	margin: auto;
-	padding-top: 100px;
+	width: 100%;
+	height: 100%;
 }
 
 .top-bar {
-	color: #B7D4DD;
+	font-size: 2.8em;
 	text-align: center;
 	background-color: rgba(255,255,255,0.2);
 	position: fixed;
-	top: 0;
+	top: -35px;
 	width: 100%;
-
 }
 
 .navigation {
 	background-color: rgba(255,255,255,0.2);
 	position: fixed;
 	bottom: 0;
-	text-align: center;
 	width: 100%;
 }
 
 .navigation a {
 	border: solid 1px;
-	width: 16.67%; /*This didn't seem to work*/
+	text-align: center;
+	float:left;
+	width: 16%;
+	height: 45px;
+}
+
+.scrolling a {
+	
+	border-radius: 5px;
+	background-color: rgba(255,255,255,0.2);
+	display:inline-block;
+	position: relative;
+	top: 70px;
+	height: 150px;
+	width: 130px;
+	margin: 2%;
+}
+
+/* Center the food icons */
+.scrolling div {
+	text-align: center;
+}
+
+/* Adds extra space at the bottom to fit scrolling to the bottom of the page */
+.scrolling .blank-anchor{
+	background-color: transparent;
+	height: 45px;
 }
