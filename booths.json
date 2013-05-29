@@ -3,6 +3,8 @@
 	<body>
 		<div id="fill"></div>
 		<button onclick="make()">Try</button>
+		// This file is suppose to be fore returning a json string for our app instead of going to a 
+		// database until after we have everything else done. !
 		<script>
 
 			function booth(title, type, rating, price, time){
