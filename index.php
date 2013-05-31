@@ -12,9 +12,9 @@
                 hr.setRequestHeader("Content-Type", "application/json",true);
                 hr.onreadystatechange = function(){
                     if(hr.readyState == 4 && hr.status == 200){
-                        // alert(hr.responseText);
                         var return_data = JSON.parse(hr.responseText);
-                        document.getElementById("top-bar").innerHTML = return_data.title;
+                        document.getElementById("test").innerHTML = 
+                        return_data.title;
                     }
                 }
                 hr.send(null);
@@ -24,7 +24,7 @@
     <body onload="ajax_get_json()">
         <div class="main-wrapper">
 
-            <h1 class="top-bar"><span>C</span><span>R</span><span>O</span><span>S</span><span>S</span><span>R</span><span>O</span><span>A</span><span>D</span><span>S</span></h1>
+            <h1 class="top-bar" id="test"><span>C</span><span>R</span><span>O</span><span>S</span><span>S</span><span>R</span><span>O</span><span>A</span><span>D</span><span>S</span></h1>
 
             <div class="scrolling">
                 <div>
