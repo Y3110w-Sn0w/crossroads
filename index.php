@@ -4,14 +4,24 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title>Food Meets Learning</title>
-        <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
-        <script>
-
-
-
+        <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+        <script type="text/javascript">
+            function ajax_get_json(){
+                var hr = new XMLHttpRequest();
+                hr.open("GET", "booths.json", true);
+                hr.setRequestHeader("Content-Type", "application/json",true);
+                hr.onreadystatechange = function(){
+                    if(hr.readyState == 4 && hr.status == 200){
+                        alert(hr.responseText);
+                        var return_data = JSON.parse(hr.responseText);
+                        document.getElementById("top-bar").innerHTML = return_data.title;
+                    }
+                }
+                hr.send(null);
+            }
         </script>
     </head>
-    <body>
+    <body onload="ajax_get_json()">
         <div class="main-wrapper">
 
             <h1 class="top-bar"><span>C</span><span>R</span><span>O</span><span>S</span><span>S</span><span>R</span><span>O</span><span>A</span><span>D</span><span>S</span></h1>
