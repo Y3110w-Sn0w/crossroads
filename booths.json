@@ -1,51 +1,53 @@
-{	"title":"All",
-	"items":[
-		{"title":"Tuscan Valley",
-		"type":"Itallian",
-		"rating":4,
-		"price":5.9,
-		"time":"11am-5pm"},
-				{ 	"title":"Caliente",
-					"type" : "Mexican",
-					"rating" : 3,
-					"price" : 3.9,
-					"time" : "8am-6pm"
-				},
-				{ 	"title":"Chefs Point",
-					"type" : "American",
-					"rating" : 5,
-					"price" : 4,
-					"time" : "9am-6pm"
-				},
-				{ 	"title":"Far East Fusion",
-					"type" : "Chinese",
-					"rating" : 2,
-					"price" : 1,
-					"time" : "10am-6pm"
-				},
-				{ 	"title":"Freshens",
-					"type" : "Smoothie",
-					"rating" : 3,
-					"price" : 5,
-					"time" : "8am-4pm"
-				},
-				{ 	"title":"Grand Teton Grill",
-					"type" : "Itallian",
-					"rating" : 5,
-					"price" : 3.3,
-					"time" : "10am-3pm"
-				},
-				{ 	"title":"Salad Bar",
-					"type" : "Vegetarian",
-					"rating" : 2,
-					"price" : 2.3,
-					"time" : "5am-8pm"
-				},
-				{ 	"title":"Stacks and Wraps",
-					"type" : "Chinese",
-					"rating" : 1,
-					"price" : 1,
-					"time" : "6am-8pm"
-				}
-		]
+{
+   "title":"All",
+   "booths":{
+      "Tuscan Valley":{
+         "type":"Itallian",
+         "rating":4,
+         "price":5.9,
+         "time":"11am-5pm"
+      },
+      "Caliente":{
+         "type":"Mexican",
+         "rating":3,
+         "price":3.9,
+         "time":"8am-6pm"
+      },
+      "Chefs Point":{
+         "type":"American",
+         "rating":5,
+         "price":4,
+         "time":"9am-6pm"
+      },
+      "Far East Fusion":{
+         "type":"Chinese",
+         "rating":2,
+         "price":1,
+         "time":"10am-6pm"
+      },
+      "Freshens":{
+         "type":"Smoothie",
+         "rating":3,
+         "price":5,
+         "time":"8am-4pm"
+      },
+      "Grand Teton Grill":{
+         "type":"Itallian",
+         "rating":5,
+         "price":3.3,
+         "time":"10am-3pm"
+      },
+      "Salad Bar":{
+         "type":"Vegetarian",
+         "rating":2,
+         "price":2.3,
+         "time":"5am-8pm"
+      },
+      "Stacks and Wraps":{
+         "type":"Chinese",
+         "rating":1,
+         "price":1,
+         "time":"6am-8pm"
+      }
+   }
 }
