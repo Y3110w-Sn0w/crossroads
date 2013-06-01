@@ -12,7 +12,6 @@
                 hr.setRequestHeader("Content-Type", "application/json",true);
                 hr.onreadystatechange = function(){
                     if(hr.readyState == 4 && hr.status == 200){
-                        alert(hr.responseText);
                         var return_data = JSON.parse(hr.responseText);
                         document.getElementById("top-bar").innerHTML = return_data.title;
                     }
