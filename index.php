@@ -20,10 +20,14 @@
             }
             hr.send(null);
         }
-
-            // Change nav icon when clicked
-            // var 
-            // document.getElementByClassName('nav-wrapper').child
+        var selectedButton = null;
+         function showInfo(aButton){
+            if(selectedButton){
+                selectedButton.className = null;
+            }
+            aButton.className = 'body-bg';
+            selectedButton = aButton;
+         }
 
         // Add the above functions inside pageLoaded()
         function pageLoaded() {
@@ -64,11 +68,11 @@
             <nav class="navigation front-10">
 
                 <div class="nav-wrapper">
-                    <a><img/>&#35;</a>
-                    <a><img/>&#43;</a>
-                    <a><img/>&#48;</a>
-                    <a><img/>&#64;</a>
-                    <a><img/>&#42;</a>
+                    <img src='replace.png' onclick = 'showInfo(this)'/>
+                    <img src='replace.png' onclick = 'showInfo(this)'/>
+                    <img src='replace.png' onclick = 'showInfo(this)'/>
+                    <img src='replace.png' onclick = 'showInfo(this)'/>
+                    <img src='replace.png' onclick = 'showInfo(this)'/>
                 </div>
             </nav>
 
