@@ -45,12 +45,7 @@
 
             <div class="scrolling">
                 <div>
-                    <a><img/>images to go here.</a>
-                    <a><img/>images to go here.</a>
-                    <a><img/>images to go here.</a>
-                    <a><img/>images to go here.</a>
-                    <a><img/>images to go here.</a>
-                    <a><img/>images to go here.</a>
+                    <!-- Change to 2 booths per row dang it!!! -->
                     <a><img/>images to go here.</a>
                     <a><img/>images to go here.</a>
                     <a><img/>images to go here.</a>
@@ -62,19 +57,7 @@
                     <!-- A blank <a> to fit the icons right on top of the navigation bar when scrolling all the way to the bottom -->
                     <br><a class="blank-anchor">&nbsp;</a>
                 </div>
-
             </div>
-
-            <nav class="navigation front-10">
-
-                <div class="nav-wrapper">
-                    <img src='replace.png' onclick = 'showInfo(this)'/>
-                    <img src='replace.png' onclick = 'showInfo(this)'/>
-                    <img src='replace.png' onclick = 'showInfo(this)'/>
-                    <img src='replace.png' onclick = 'showInfo(this)'/>
-                    <img src='replace.png' onclick = 'showInfo(this)'/>
-                </div>
-            </nav>
 
         </div>
     </body>
