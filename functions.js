@@ -6,10 +6,10 @@ function ajax_get_json(){
     hr.onreadystatechange = function(){
         if(hr.readyState == 4 && hr.status == 200){
             var return_data = JSON.parse(hr.responseText);
-            document.getElementById("test").innerHTML = 
-            return_data.title;
+            document.getElementById("test").innerHTML = return_data.title;
         }
     }
+
     hr.send(null);
 }
 
@@ -23,11 +23,19 @@ var notHidden = null;
 
 function showElement(tile){
     if (notHidden){
-        notHidden = null;
+        if (notHidden.className == "tile-menu" && notHidden.id == tile.id) {   
+            notHidden.className = "hidden tile-menu";
+        }
+        else {
+            notHidden.className = "hidden tile-menu";
+            tile.className = "tile-menu";
+            notHidden = tile;
+        }
     }
-
-    tile.className.replace("hidden","");
-    notHidden = tile;
+    else {
+            tile.className = "tile-menu";
+            notHidden = tile;
+    }
 }
 
 
