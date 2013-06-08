@@ -3,7 +3,6 @@
       {
          "title":"Tuscan Valley",
          "logo":"images/",
-         "type":"Italian",
          "rating":4,
          "price":5.9,
          "time":"11am-5pm",
@@ -23,7 +22,6 @@
       {
          "title":"Caliente",
          "logo":"images/",
-         "type":"Mexican",
          "rating":3,
          "price":3.9,
          "time":"8am-6pm",
@@ -43,7 +41,6 @@
       {
          "title":"Chefs Point",
          "logo":"images/",
-         "type":"American",
          "rating":5,
          "price":4,
          "time":"9am-6pm",
@@ -63,7 +60,6 @@
       {
          "title":"Far East Fusion",
          "logo":"images/",
-         "type":"Chinese",
          "rating":2,
          "price":1,
          "time":"10am-6pm",
@@ -83,7 +79,6 @@
       {
          "title":"Freshens",
          "logo":"images/",
-         "type":"Smoothie",
          "rating":3,
          "price":5,
          "time":"8am-4pm",
@@ -103,7 +98,6 @@
       {
          "title":"Grand Teton Grill",
          "logo":"images/",
-         "type":"Itallian",
          "rating":5,
          "price":3.3,
          "time":"10am-3pm",
@@ -123,7 +117,6 @@
       {
          "title":"Salad Bar",
          "logo":"images/",
-         "type":"Vegetarian",
          "rating":2,
          "price":2.3,
          "time":"5am-8pm",
@@ -143,7 +136,6 @@
       {
          "title":"Stacks and Wraps",
          "logo":"images/",
-         "type":"Chinese",
          "rating":1,
          "price":1,
          "time":"6am-8pm",
@@ -155,6 +147,48 @@
             },
             "Recommended":{
                "Food":"yayrecommended7",
+               "Price":"2.40",
+               "Rating":"3"
+            }
+         }
+      },
+      {
+         "title":"Favorites",
+         "logo":"images/",
+         "rating":5,
+         "price":6,
+         "time":"",
+         "menu":{
+            "Pizza":{
+               "From":"Tuscan Valley",
+               "Food":"yayspecial7",
+               "Price":"4.3",
+               "Rating":"5"
+            },
+            "Recommended":{
+               "Food":"yayrecommended7",
+               "From":"Tuscan Valley",
+               "Price":"2.40",
+               "Rating":"3"
+            }
+         }
+      },
+      {
+         "title":"History",
+         "logo":"images/",
+         "rating":5,
+         "price":4.6,
+         "time":"",
+         "menu":{
+            "Item 1":{
+               "From":"Tuscan Valley",
+               "Food":"yayspecial7",
+               "Price":"4.3",
+               "Rating":"5"
+            },
+            "Item 2":{
+               "Food":"yayrecommended7",
+               "From":"Tuscan Valley",
                "Price":"2.40",
                "Rating":"3"
             }
