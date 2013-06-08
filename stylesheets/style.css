@@ -61,10 +61,15 @@ body {
 }
 
 .tile-menu {
-	height: 180px;
 	width: 100%;
 	margin-bottom: 6px;
 	border-radius: 10px;
 	background-color: #A39C98;
 	box-shadow: 6px 6px 15px #212121;
+	height: 0px;
+    overflow: hidden;
+    transition: height 2s;
+    -moz-transition: height 1s; /* Firefox 4 */
+    -webkit-transition: height .5s; /* Safari and Chrome */
+    -o-transition: height .5s; /* Opera */
 }
