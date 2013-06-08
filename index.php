@@ -16,8 +16,9 @@
             <div> <!-- centering div -->
                 <div>
                     <img src="placeholder.png" onclick="showElement(document.getElementById('menu-1'));"/>
-                    <img src="placeholder.png" onclick="showElement(document.getElementById('menu-1'));"/>
+                    <img src="placeholder.png" onclick="showElement(document.getElementById('menu-6'));"/>
                     <div id="menu-1" class="hidden tile-menu"></div>
+                    <div id="menu-6" class="hidden tile-menu"></div>
                 </div>
                 <div>
                     <img src="placeholder.png" onclick="showElement(document.getElementById('menu-2'));"/>

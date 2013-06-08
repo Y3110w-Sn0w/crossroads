@@ -8,7 +8,7 @@ body {
 }
 
 .body-bg {
-	background-color: #212121;
+	background-color: #4B4949;
 }
 
 /*	Setting the outer limits	*/
@@ -22,7 +22,7 @@ body {
 .top-bar {
 	font-size: 2.8em;
 	text-align: center;
-	background-color: #4D4D4D;
+	background-color: #1A1A1A;
 	position: fixed;
 	top: -30px;
 	width: 100%;
@@ -63,4 +63,8 @@ body {
 .tile-menu {
 	height: 180px;
 	width: 100%;
+	margin-bottom: 6px;
+	border-radius: 10px;
+	background-color: #A39C98;
+	box-shadow: 6px 6px 15px #212121;
 }
