@@ -15,32 +15,32 @@
         <div class="tile">
             <div> <!-- centering div -->
                 <div>
-                    <img src="placeholder.png" onclick="changeDisplay('menu-1');"/>
-                    <img src="placeholder.png" onclick="changeDisplay('menu-2');"/>
+                    <img src="placeholder.png" onclick="showMenu('menu-1');"/>
+                    <img src="placeholder.png" onclick="showMenu('menu-2');"/>
                     <div id="menu-1" class="tile-menu"></div>
                     <div id="menu-2" class="tile-menu"></div>
                 </div>
                 <div>
-                    <img src="placeholder.png" onclick="changeDisplay('menu-3');"/>
-                    <img src="placeholder.png" onclick="changeDisplay('menu-4');"/>
+                    <img src="placeholder.png" onclick="showMenu('menu-3');"/>
+                    <img src="placeholder.png" onclick="showMenu('menu-4');"/>
                     <div id="menu-3" class="tile-menu"></div>
                     <div id="menu-4" class="tile-menu"></div>
                 </div>
                 <div>
-                    <img src="placeholder.png" onclick="changeDisplay('menu-5');"/>
-                    <img src="placeholder.png" onclick="changeDisplay('menu-6');"/>
+                    <img src="placeholder.png" onclick="showMenu('menu-5');"/>
+                    <img src="placeholder.png" onclick="showMenu('menu-6');"/>
                     <div id="menu-5" class="tile-menu"></div>
                     <div id="menu-6" class="tile-menu"></div>
                 </div>
                 <div>
-                    <img src="placeholder.png" onclick="changeDisplay('menu-7');"/>
-                    <img src="placeholder.png" onclick="changeDisplay('menu-8');"/>
+                    <img src="placeholder.png" onclick="showMenu('menu-7');"/>
+                    <img src="placeholder.png" onclick="showMenu('menu-8');"/>
                     <div id="menu-7" class="tile-menu"></div>
                     <div id="menu-8" class="tile-menu"></div>
                 </div>
                 <div>
-                    <img src="placeholder.png" onclick="changeDisplay('menu-9');"/>
-                    <img src="placeholder.png" onclick="changeDisplay('menu-10');"/>
+                    <img src="placeholder.png" onclick="showMenu('menu-9');"/>
+                    <img src="placeholder.png" onclick="showMenu('menu-10');"/>
                     <div id="menu-9" class="tile-menu"></div>
                     <div id="menu-10" class="tile-menu"></div>
                 </div>
