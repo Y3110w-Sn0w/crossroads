@@ -6,7 +6,8 @@ function ajax_get_json(){
     hr.onreadystatechange = function(){
         if(hr.readyState == 4 && hr.status == 200){
             var return_data = JSON.parse(hr.responseText);
-            document.getElementById("test").innerHTML = return_data.title;
+            console.log(return_data);
+            document.getElementById("test").innerHTML = return_data[0];
         }
     }
 
