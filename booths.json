@@ -1,53 +1,164 @@
 {
-   "title":"All",
-   "booths":{
-      "Tuscan Valley":{
-         "type":"Itallian",
+   "Booths":[
+      {
+         "title":"Tuscan Valley",
+         "logo":"images/",
+         "type":"Italian",
          "rating":4,
          "price":5.9,
-         "time":"11am-5pm"
+         "time":"11am-5pm",
+         "menu":{
+            "Special":{
+               "Food":"BBQ Chicken Pizza",
+               "Price":"4.50",
+               "Rating":"3.5"
+            },
+            "Recommended":{
+               "Food":"Fetechine Alfredo",
+               "Price":"3.50",
+               "Rating":"2.8"
+            }
+         }
       },
-      "Caliente":{
+      {
+         "title":"Caliente",
+         "logo":"images/",
          "type":"Mexican",
          "rating":3,
          "price":3.9,
-         "time":"8am-6pm"
+         "time":"8am-6pm",
+         "menu":{
+            "Special":{
+               "Food":"yayspecial",
+               "Price":"4.3",
+               "Rating":"5"
+            },
+            "Recommended":{
+               "Food":"yayrecommended",
+               "Price":"2.40",
+               "Rating":"3"
+            }
+         }
       },
-      "Chefs Point":{
+      {
+         "title":"Chefs Point",
+         "logo":"images/",
          "type":"American",
          "rating":5,
          "price":4,
-         "time":"9am-6pm"
+         "time":"9am-6pm",
+         "menu":{
+            "Special":{
+               "Food":"yayspecial2",
+               "Price":"4.3",
+               "Rating":"5"
+            },
+            "Recommended":{
+               "Food":"yayrecommended2",
+               "Price":"2.40",
+               "Rating":"3"
+            }
+         }
       },
-      "Far East Fusion":{
+      {
+         "title":"Far East Fusion",
+         "logo":"images/",
          "type":"Chinese",
          "rating":2,
          "price":1,
-         "time":"10am-6pm"
+         "time":"10am-6pm",
+         "menu":{
+            "Special":{
+               "Food":"yayspecial3",
+               "Price":"4.3",
+               "Rating":"5"
+            },
+            "Recommended":{
+               "Food":"yayrecommended3",
+               "Price":"2.40",
+               "Rating":"3"
+            }
+         }
       },
-      "Freshens":{
+      {
+         "title":"Freshens",
+         "logo":"images/",
          "type":"Smoothie",
          "rating":3,
          "price":5,
-         "time":"8am-4pm"
+         "time":"8am-4pm",
+         "menu":{
+            "Special":{
+               "Food":"yayspecial4",
+               "Price":"4.3",
+               "Rating":"5"
+            },
+            "Recommended":{
+               "Food":"yayrecommended4",
+               "Price":"2.40",
+               "Rating":"3"
+            }
+         }
       },
-      "Grand Teton Grill":{
+      {
+         "title":"Grand Teton Grill",
+         "logo":"images/",
          "type":"Itallian",
          "rating":5,
          "price":3.3,
-         "time":"10am-3pm"
+         "time":"10am-3pm",
+         "menu":{
+            "Special":{
+               "Food":"yayspecial5",
+               "Price":"4.3",
+               "Rating":"5"
+            },
+            "Recommended":{
+               "Food":"yayrecommended5",
+               "Price":"2.40",
+               "Rating":"3"
+            }
+         }
       },
-      "Salad Bar":{
+      {
+         "title":"Salad Bar",
+         "logo":"images/",
          "type":"Vegetarian",
          "rating":2,
          "price":2.3,
-         "time":"5am-8pm"
+         "time":"5am-8pm",
+         "menu":{
+            "Special":{
+               "Food":"yayspecial6",
+               "Price":"4.3",
+               "Rating":"5"
+            },
+            "Recommended":{
+               "Food":"yayrecommended6",
+               "Price":"2.40",
+               "Rating":"3"
+            }
+         }
       },
-      "Stacks and Wraps":{
+      {
+         "title":"Stacks and Wraps",
+         "logo":"images/",
          "type":"Chinese",
          "rating":1,
          "price":1,
-         "time":"6am-8pm"
+         "time":"6am-8pm",
+         "menu":{
+            "Special":{
+               "Food":"yayspecial7",
+               "Price":"4.3",
+               "Rating":"5"
+            },
+            "Recommended":{
+               "Food":"yayrecommended7",
+               "Price":"2.40",
+               "Rating":"3"
+            }
+         }
       }
-   }
+   ]
 }
