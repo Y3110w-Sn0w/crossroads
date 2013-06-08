@@ -56,13 +56,9 @@ body {
 	z-index: 10;
 }
 
-.hidden {
-	display: none;
-}
-
 .tile-menu {
 	width: 100%;
-	margin-bottom: 6px;
+	/*margin-bottom: 6px;*/
 	border-radius: 10px;
 	background-color: #A39C98;
 	box-shadow: 6px 6px 15px #212121;

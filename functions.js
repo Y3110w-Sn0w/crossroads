@@ -27,19 +27,35 @@ function showElement(tile){
     if (notHidden){
         if (notHidden.className == "tile-menu" && notHidden.id == tile.id) {   
             notHidden.className = "hidden tile-menu";
+            notHidden.style.height = '0px';
         }
         else {
             notHidden.className = "hidden tile-menu";
+            tile.style.height = '150px';
             tile.className = "tile-menu";
             notHidden = tile;
         }
     }
     else {
             tile.className = "tile-menu";
+            tile.style.height = '150px';
             notHidden = tile;
     }
 }
 
+function changeDisplay(element) {
+    if (document.getElementById(element).style.height != "150px") {
+        document.getElementById(element).style.height = '150px';
+        notHidden = element;
+    }
+    else {
+        document.getElementById(element).style.height = '0px';
+    }
+
+    if (notHidden.style.height == element.style.height) {
+        notHidden.style.height = '0px';
+    }
+}
 
 // LEAVE THIS CODE ALWAYS AT THE BOTTOM
 // Load all functions after page is completely loaded
