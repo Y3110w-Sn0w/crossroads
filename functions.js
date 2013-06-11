@@ -22,7 +22,6 @@ function ajax_get_json(){
                     counter++;
                 }
                 var imgElement = document.createElement('img'); 
-                var imgElement.id = i;
                 var url = booths[i].image;
                 imgElement.setAttribute("src",url);
                 // here we could pass in the id of the picture and therefore know which div it belongs to.
