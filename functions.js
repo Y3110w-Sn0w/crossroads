@@ -22,9 +22,13 @@ function ajax_get_json(){
                     counter++;
                 }
                 var imgElement = document.createElement('img'); 
+                var imgElement.id = i;
                 var url = booths[i].image;
                 imgElement.setAttribute("src",url);
-                // imgElement.onclick = showMenu('menu '+ counter);
+                // here we could pass in the id of the picture and therefore know which div it belongs to.
+                // this means that we could then create a div (menu) on the fly and append it to the appropriate 
+                // div.??? what are others thoughts?
+                // imgElement.onclick = showMenu(i);
                 divElement.appendChild(imgElement);
                 // if(i % 2 != 0){
                 //     var divElement1 = document.createElement('div');
