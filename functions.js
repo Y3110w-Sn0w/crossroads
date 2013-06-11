@@ -45,22 +45,31 @@ function pageLoaded() {
     ajax_get_json();
 }
 
-var parentDiv = null;
+var parentOld = null;
 var nextDestroy = null;
         
 //function to create and destroy menus on the fly based on the id of the parent div
-function showCreateMenu(id) {
+function showCreateMenu(id,dir) {
     var parent = document.getElementById('div '+id);
+    if(parent == parentOld){
+        nextDestroy.style.height = '0px';
+        parentOld.removeChild(nextDestroy);
+        parentOld = null;
+        nextDestroy = null;
+        return;
+    }
+    if(nextDestroy){
+        nextDestroy.style.height = '0px';
+        parentOld.removeChild(nextDestroy);
+    }
     var element = document.createElement('div');
     parent.appendChild(element);
     element.style.height = '0px';
-    if(document.getElementById('menu')){
-        document.parentDiv.removeChild(nextDestroy);
-    }
-    element.id = 'menu';    
-    element.style.height = '150px';
-    parentDiv = parent;
+    element.id = 'menu '+dir;    
+    element.className = 'tile-menu';
+    parentOld = parent;
     nextDestroy = element;
+    element.style.height = '150px';
 }
 
 // LEAVE THIS CODE ALWAYS AT THE BOTTOM
