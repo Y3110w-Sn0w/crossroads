@@ -6,8 +6,35 @@ function ajax_get_json(){
     hr.onreadystatechange = function(){
         if(hr.readyState == 4 && hr.status == 200){
             var return_data = JSON.parse(hr.responseText);
-            console.log(return_data.Booths);
-            console.log(return_data.Booths.length);
+
+            //variable to hold the array of booths that have been returned from JSON
+            var booths = return_data.Booths;
+            // variable to keep track of the outer divs that will contain booths and eventually, the menu
+            var counter = 0;
+            // loop that goes through and creates the booth images and the div for each set of images.
+            for(var i = 0; i < booths.length; i++){
+                var divElement;
+                //This if is to create a container for two booths at a time.
+                if(i == 0 || i % 2 == 0){
+                    divElement = document.createElement('div');
+                    divElement.id = 'div ' + counter;
+                    document.getElementById('centerDiv').appendChild(divElement);
+                    counter++;
+                }
+                var imgElement = document.createElement('img'); 
+                var url = booths[i].image;
+                imgElement.setAttribute("src",url);
+                // imgElement.onclick = showMenu('menu '+ counter);
+                divElement.appendChild(imgElement);
+                // if(i % 2 != 0){
+                //     var divElement1 = document.createElement('div');
+                //     var divElement2 = document.createElement('div');
+                //     divElement1.id = 'menu-'+ (i - 1);
+                //     divElement2.id = 'menu-'+ i;
+                //     document.getElementById('centerDiv').appendChild(divElement1);
+                //     document.getElementById('centerDiv').appendChild(divElement2);
+                // }
+            }
             // document.getElementById("test").innerHTML = return_data[0];
         }
     }
