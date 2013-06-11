@@ -31,7 +31,7 @@ function ajax_get_json(){
                 var url = booths[i].image;
                 imgElement.setAttribute("src",url);
                 // for each image, we will pass the number as an id and add create and populate a menu on the fly.
-                imgElement.setAttribute('onclick','showCreateMenu('+(counter - 1)+');');
+                imgElement.onclick = showCreateMenu(i);
                 divElement.appendChild(imgElement);
             }
         }
@@ -44,23 +44,30 @@ function ajax_get_json(){
 function pageLoaded() {
     ajax_get_json();
 }
-
-var parentDiv = null;
-var nextDestroy = null;
         
-//function to create and destroy menus on the fly based on the id of the parent div
+// Show menu form the clicked tile
+var notHidden = null;
+var i = 0;
+
 function showCreateMenu(id) {
-    var parent = document.getElementById('div '+id);
+    var parent = document.getElementById(id);
     var element = document.createElement('div');
-    parent.appendChild(element);
-    element.style.height = '0px';
     if(document.getElementById('menu')){
-        document.parentDiv.removeChild(nextDestroy);
+        document.body.removeChild(document.getElementById('menu'));
     }
     element.id = 'menu';    
-    element.style.height = '150px';
-    parentDiv = parent;
-    nextDestroy = element;
+        if (element.style.height != "150px") {
+            element.style.height = '150px';
+        }
+        else {
+            element.style.height = '0px';
+        }
+
+        if (notHidden && notHidden != element) {
+            notHidden.style.height = '0px';
+        }
+
+        notHidden = element;
 }
 
 // LEAVE THIS CODE ALWAYS AT THE BOTTOM
