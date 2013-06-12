@@ -51,16 +51,19 @@ var nextDestroy = null;
 //function to create and destroy menus on the fly based on the id of the parent div
 function showCreateMenu(id,dir) {
     var parent = document.getElementById('div '+id);
+    //if the old parent is the same as the current called parent
     if(parent == parentOld){
         nextDestroy.style.height = '0px';
-        parentOld.removeChild(nextDestroy);
+        killElement(nextDestroy);
         parentOld = null;
         nextDestroy = null;
         return;
     }
+    //if the element 'nextDestroy' exists
     if(nextDestroy){
+        //set the hieght to 0px and then destroy.
         nextDestroy.style.height = '0px';
-        parentOld.removeChild(nextDestroy);
+        killElement(nextDestroy);
     }
     var element = document.createElement('div');
     parent.appendChild(element);
@@ -70,6 +73,11 @@ function showCreateMenu(id,dir) {
     parentOld = parent;
     nextDestroy = element;
     element.style.height = '150px';
+}
+
+//create a function that will destroy any given element.
+function killElement(y){
+    y.parentNode.removeChild(y);
 }
 
 // LEAVE THIS CODE ALWAYS AT THE BOTTOM
