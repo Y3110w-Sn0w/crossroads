@@ -1,55 +1,60 @@
 // AJAX to manage JSON file
-function ajax_get_json(){
-    var hr = new XMLHttpRequest();
-    hr.open("GET", "booths.json", true);
-    hr.setRequestHeader("Content-Type", "application/json",true);
-    hr.onreadystatechange = function(){
-        if(hr.readyState == 4 && hr.status == 200){
-            var return_data = JSON.parse(hr.responseText);
-
-            //variable to hold the array of booths that have been returned from JSON
-            var booths = return_data.Booths;
-            // variable to keep track of the outer divs that will contain booths and eventually, the menu
-            var counter = 0;
-            // loop that goes through and creates the booth images and the div for each set of images.
-            for(var i = 0; i < booths.length; i++){
-                var divElement;
-                //This if is to create a container for two booths at a time.
-                if(i == 0 || i % 2 == 0){
-                    //here is the creation of the div(here, there is only one per two booths)
-                    divElement = document.createElement('div');
-                    //here we assign the div a unique id.. we may eventually get rid of this div if we can
-                    //figure out a more responsive approach so that how many we have wide will be dynamic.
-                    divElement.id = 'div ' + counter;
-                    //here we take the main div in the body of html and fill it with the above created.
-                    document.getElementById('centerDiv').appendChild(divElement);
-                    counter++;
+function get_json_worker(){
+            var w;
+            if(typeof(Worker)!=="undefined")
+            {   
+                if(typeof(w)=="undefined")
+                {
+                    w=new Worker("workersMain.js");
                 }
-                //create an img element that we will use for each booth.
-                var imgElement = document.createElement('img'); 
-                //grab the url for each booth and place it in the src attribute.
-                var url = booths[i].image;
-                imgElement.setAttribute("src",url);
-                // for each image, we will pass the number as an id and add create and populate a menu on the fly.
-                imgElement.setAttribute('onclick','showCreateMenu('+(counter - 1)+');');
-                divElement.appendChild(imgElement);
+                // this is where all of our DOM code will go?
+                w.onmessage = function(event){
+                    //put all the dom functions here because when the worker is done, 
+                    // this is where the data will be returned and the dom can therefore be used.
+                    var mainArray = event.data;
+                    // variable to keep track of the outer divs that will contain booths and eventually, the menu
+                    var counter = 0;
+                    // loop that goes through and creates the booth images and the div for each set of images.
+                    for(var i = 0; i < mainArray.length; i++){
+                           var divElement;
+                           //This if is to create a container for two booths at a time.
+                           if(i == 0 || i % 2 == 0){
+                               //here is the creation of the div(here, there is only one per two booths)
+                               divElement = document.createElement('div');
+                               //here we assign the div a unique id.. we may eventually get rid of this div if we can
+                               //figure out a more responsive approach so that how many we have wide will be dynamic.
+                               divElement.id = 'div ' + counter;
+                               //here we take the main div in the body of html and fill it with the above created.
+                               document.getElementById('centerDiv').appendChild(divElement);
+                               counter++;
+                           }
+                           //create an img element that we will use for each booth.
+                           var imgElement = document.createElement('img'); 
+                           //grab the url for each booth and place it in the src attribute.
+                           var url = mainArray[i];
+                           imgElement.setAttribute("src",url);
+                           // for each image, we will pass the number as an id and add create and populate a menu on the fly.
+                           imgElement.setAttribute('onclick','showCreateMenu('+(counter - 1)+');');
+                           divElement.appendChild(imgElement);
+                    };
+            }else
+            {
+                //This is where we would do some error handling just in case their browser 
+                // does not support workers.
             }
-        }
-    }
-
-    hr.send(null);
+         }
 }
 
 // Add the above functions inside pageLoaded() if you want then to run after the page is loaded on the browser
 function pageLoaded() {
-    ajax_get_json();
+    get_json_worker();
 }
 
 var parentOld = null;
 var nextDestroy = null;
         
 //function to create and destroy menus on the fly based on the id of the parent div
-function showCreateMenu(id,dir) {
+function showCreateMenu(id) {
     var parent = document.getElementById('div '+id);
     //if the old parent is the same as the current called parent
     if(parent == parentOld){
