@@ -12,6 +12,7 @@ function get_json_worker(){
                     //put all the dom functions here because when the worker is done, 
                     // this is where the data will be returned and the dom can therefore be used.
                     var mainArray = event.data;
+                    console.log(mainArray);
                     // variable to keep track of the outer divs that will contain booths and eventually, the menu
                     var counter = 0;
                     // loop that goes through and creates the booth images and the div for each set of images.
@@ -36,13 +37,14 @@ function get_json_worker(){
                            // for each image, we will pass the number as an id and add create and populate a menu on the fly.
                            imgElement.setAttribute('onclick','showCreateMenu('+(counter - 1)+');');
                            divElement.appendChild(imgElement);
-                    };
-            }else
+                    }
+                };
+            }
+            else
             {
                 //This is where we would do some error handling just in case their browser 
                 // does not support workers.
             }
-         }
 }
 
 // Add the above functions inside pageLoaded() if you want then to run after the page is loaded on the browser
