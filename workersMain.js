@@ -1,5 +1,5 @@
 //this would be a worker. This runs on its own. Cannot access 'document'.
-function worker(){
+self.addEventListener('message',function(){
 	var hr = new XMLHttpRequest();
     hr.open("GET", "booths.json", true);
     hr.setRequestHeader("Content-Type", "application/json",true);

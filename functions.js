@@ -8,7 +8,7 @@ function get_json_worker(){
                     w=new Worker("workersMain.js");
                 }
                 // this is where all of our DOM code will go?
-                w.onmessage = function(event){
+                w.addEventListener( "message", function(event){
                     //put all the dom functions here because when the worker is done, 
                     // this is where the data will be returned and the dom can therefore be used.
                     var mainArray = event.data;
@@ -38,7 +38,8 @@ function get_json_worker(){
                            imgElement.setAttribute('onclick','showCreateMenu('+(counter - 1)+');');
                            divElement.appendChild(imgElement);
                     }
-                };
+                }, false);
+                w.postMessage();
             }
             else
             {
