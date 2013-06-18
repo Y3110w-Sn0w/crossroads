@@ -1,5 +1,5 @@
 //this would be a worker. This runs on its own. Cannot access 'document'.
-function worker(index){
+self.onmessage = function(index){
 	var hr = new XMLHttpRequest();
     hr.open("GET", "booths.json", true);
     hr.setRequestHeader("Content-Type", "application/json",true);
@@ -11,11 +11,16 @@ function worker(index){
             if(return_data.Booths[index]['menu']){
 	            //variable to hold the array of booths that have been returned from JSON
     	        resultObj = return_data.Booths[index]['menu'];
+
             }else{
             	resultObj = {"result" : "No such attribute"};
             }
             postMessage(resultObj);
+            self.close();
+        }else if(hr.readyState == 4){
+            postMessage("Error: "+ hr.status);
+            self.close();
         }
     }
-    hr.send(null);
+    hr.send();
 }

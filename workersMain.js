@@ -1,15 +1,5 @@
-//this would be a worker. This runs on its own. Cannot access 'document'.
 self.onmessage = function(e){
-    if (e.data === "start") {
-        done()
-    }
-};
-
-function done() {
-    postMessage("done");
-}
-
-	/* var hr = new XMLHttpRequest();
+    var hr = new XMLHttpRequest();
     hr.open("GET", "booths.json", true);
     hr.setRequestHeader("Content-Type", "application/json",true);
     hr.onreadystatechange = function(){
@@ -28,4 +18,8 @@ function done() {
             postMessage("Error: " + hr.status);
             self.close();
         }
-    } */
+    }
+    //This actually sends off the request to the page. 
+    //There is no request or message sent with out it!
+    hr.send();
+};
