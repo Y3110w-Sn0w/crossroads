@@ -63,7 +63,7 @@ function showCreateMenu(id) {
     var element = document.createElement('div');
     parent.appendChild(element);
     element.style.height = '0px';
-    element.id = 'menu '+dir;    
+    element.id = 'menu';    
     element.className = 'tile-menu';
     parentOld = parent;
     nextDestroy = element;
