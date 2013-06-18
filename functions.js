@@ -11,6 +11,10 @@ function get_json_worker(){
                 // loop that goes through and creates the booth images and the div for each set of images.
                 for(var i = 0; i < mainArray.length; i++){
                    var divElement;
+                   var dir = 'right';
+                   if(i % 2 == 0 || i == 0 ){
+                      dir = 'left';
+                   }
                    //This if is to create a container for two booths at a time.
                    if(i == 0 || i % 2 == 0){
                        //here is the creation of the div(here, there is only one per two booths)
@@ -28,7 +32,7 @@ function get_json_worker(){
                    var url = mainArray[i];
                    imgElement.setAttribute("src",url);
                    // for each image, we will pass the number as an id and add create and populate a menu on the fly.
-                   imgElement.setAttribute('onclick','showCreateMenu('+(counter - 1)+');');
+                   imgElement.setAttribute('onclick','showCreateMenu('+(counter - 1)+', "'+dir+'");');
                    divElement.appendChild(imgElement);
                 }
             } 
@@ -44,7 +48,8 @@ var parentOld = null;
 var nextDestroy = null;
         
 //function to create and destroy menus on the fly based on the id of the parent div
-function showCreateMenu(id) {
+// maybe we can add a parameter of dir 
+function showCreateMenu(id, dir) {
     var parent = document.getElementById('div '+id);
     //if the old parent is the same as the current called parent
     if(parent == parentOld){
@@ -72,7 +77,8 @@ function showCreateMenu(id) {
 
 //create a function that will destroy any given element.
 function killElement(y){
-    y.parentNode.removeChild(y);
+  //some kind of timer
+    setTimeout(y.parentNode.removeChild(y), 1000);
 }
 
 // LEAVE THIS CODE ALWAYS AT THE BOTTOM
