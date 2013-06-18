@@ -54,7 +54,7 @@ function showCreateMenu(id, dir) {
     //if the old parent is the same as the current called parent
     if(parent == parentOld){
         nextDestroy.style.height = '0px';
-        killElement(nextDestroy);
+        setTimeout(nextDestroy.parentNode.removeChild(nextDestroy), 1000);
         parentOld = null;
         nextDestroy = null;
         return;
@@ -73,12 +73,6 @@ function showCreateMenu(id, dir) {
     parentOld = parent;
     nextDestroy = element;
     element.style.height = '150px';
-}
-
-//create a function that will destroy any given element.
-function killElement(y){
-  //some kind of timer
-    setTimeout(y.parentNode.removeChild(y), 1000);
 }
 
 // LEAVE THIS CODE ALWAYS AT THE BOTTOM
