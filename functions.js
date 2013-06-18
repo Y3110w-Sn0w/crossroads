@@ -38,41 +38,74 @@ function get_json_worker(){
             } 
             worker.postMessage();
 }
+
+
+
             
 // Add the above functions inside pageLoaded() if you want then to run after the page is loaded on the browser
 function pageLoaded() {
     get_json_worker();
 }
 
-var parentOld = null;
-var nextDestroy = null;
+
+
+// to store the old parent to see if it is the same.
+var opensParent = null;
+var openDiv = null;
+
+
         
-//function to create and destroy menus on the fly based on the id of the parent div
-// maybe we can add a parameter of dir 
+// function for ONCLICK of images 
+//********** <id> is to find parent while <dir> is to style menu
 function showCreateMenu(id, dir) {
-    var parent = document.getElementById('div '+id);
-    //if the old parent is the same as the current called parent
-    if(parent == parentOld){
-        nextDestroy.style.height = '0px';
-        setTimeout(nextDestroy.parentNode.removeChild(nextDestroy), 1000);
-        parentOld = null;
-        nextDestroy = null;
+  var element = null;
+  //  1. is it the same div that is already open?
+  //   1.1. ** Yes **
+  if(document.getElementById("menu"+id+" "+dir) == openDiv && document.getElementById("menu"+id+" "+dir)){
+        openDiv.style.height = '0px';
+        //      ** there are no open divs anymore **
+        openDiv = null;
+        opensParent = null;
+        // ** nothing more needs done **
         return;
+  }
+  //   1.2. ** No **
+  else{
+      if(openDiv){
+        openDiv.style.height = '0px';
+      }
+        // ///// put up a div for the menu. ///////
+        //     1.2.1 ** the div already exists! **
+        if(document.getElementById("menu"+id+" "+dir)){
+            //           ** animate div to 150px **
+            element = document.getElementById("menu"+id+" "+dir);
+            element.style.height = '150px';
+            //           ** fill the div with the menu data **
+// worker stuff should go here to get the menu data
+            //           ** element is now an open div **
+            openDiv = element;
+            //           ** all done here **
+            return;
+        }
+        //   1.2.2 ** div does not exist **
+        else{
+            //           ** create the new element to be added **
+            element = document.createElement('div');
+            //           ** add the id that we need for future manipulation **
+            element.id = "menu"+id+" "+dir;
+            element.className = 'tile-menu';
+            //           ** get the parent div so we can append the new child **
+            opensParent = document.getElementById("div "+id);
+            //           ** append the child **
+            opensParent.appendChild(element);
+            //           ** fill the div with the menu data **
+// worker stuff again to get menu data. 
+            //           ** set the menu to an expanded state **
+            setTimeout(function(){element.style.height = '150px'},10);
+            //           ** element is now an open div **
+            openDiv = element;
+        } 
     }
-    //if the element 'nextDestroy' exists
-    if(nextDestroy){
-        //set the hieght to 0px and then destroy.
-        nextDestroy.style.height = '0px';
-        killElement(nextDestroy);
-    }
-    var element = document.createElement('div');
-    parent.appendChild(element);
-    element.style.height = '0px';
-    element.id = 'menu';    
-    element.className = 'tile-menu';
-    parentOld = parent;
-    nextDestroy = element;
-    element.style.height = '150px';
 }
 
 // LEAVE THIS CODE ALWAYS AT THE BOTTOM
