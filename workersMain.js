@@ -1,7 +1,6 @@
-self.onmessage = function(e){
+self.onmessage = function(){
     var hr = new XMLHttpRequest();
     hr.open("GET", "booths.json", true);
-    hr.setRequestHeader("Content-Type", "application/json",true);
     hr.onreadystatechange = function(){
         if(hr.readyState == 4 && hr.status == 200){
             // this is the data that is returned from the ajax request.

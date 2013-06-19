@@ -12,11 +12,10 @@ function get_json_worker(){
                 for(var i = 0; i < mainArray.length; i++){
                    var divElement;
                    var dir = 'right';
-                   if(i % 2 == 0 || i == 0 ){
-                      dir = 'left';
-                   }
+
                    //This if is to create a container for two booths at a time.
                    if(i == 0 || i % 2 == 0){
+                       dir = 'left';
                        //here is the creation of the div(here, there is only one per two booths)
                        divElement = document.createElement('div');
                        //here we assign the div a unique id.. we may eventually get rid of this div if we can
@@ -32,7 +31,7 @@ function get_json_worker(){
                    var url = mainArray[i];
                    imgElement.setAttribute("src",url);
                    // for each image, we will pass the number as an id and add create and populate a menu on the fly.
-                   imgElement.setAttribute('onclick','showCreateMenu('+(counter - 1)+', "'+dir+'");');
+                   imgElement.setAttribute('onclick','showCreateMenu(' + (counter - 1) + ', "' + dir + '");');
                    divElement.appendChild(imgElement);
                 }
             } 
@@ -71,9 +70,9 @@ function showCreateMenu(id, dir) {
   }
   //   1.2. ** No **
   else{
-      if(openDiv){
-        openDiv.style.height = '0px';
-      }
+        if(openDiv){
+          openDiv.style.height = '0px';
+        }
         // ///// put up a div for the menu. ///////
         //     1.2.1 ** the div already exists! **
         if(document.getElementById("menu"+id+" "+dir)){
