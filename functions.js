@@ -107,6 +107,21 @@ function showCreateMenu(id, dir) {
     }
 }
 
+
+// The Dynamic HTML that we will create using JavaScript and workers
+// <div id="the dynamic menu div">
+//   <div id="dynamic">
+//     <img src="grabbed from JSON object" />
+//     <h2>Price</h2>
+//     <div id="rating-bar"></div> <!-- the stars will be put on the background, and we will dynamically control the width of the div -->
+//     <h1>Dish Name</h1>
+//   </div>
+//   <div id="fav-btn">
+//     <button><img src="favorite-star"></button>
+//     <p>Add to Favorite</p>
+//   </div>
+// </div>
+
 // LEAVE THIS CODE ALWAYS AT THE BOTTOM
 // Load all functions after page is completely loaded
 window.onload = pageLoaded;
