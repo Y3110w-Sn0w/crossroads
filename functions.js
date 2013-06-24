@@ -1,8 +1,8 @@
 // AJAX to manage JSON file
 function get_json_worker(){
-            var worker=new Worker("workersMain.js?version=1");
+            var worker_main = new Worker("workersMain.js?version=1");
             // this is where all of our DOM code will go?
-            worker.onmessage = function(e){
+            worker_main.onmessage = function(e){
                 //put all the dom functions here because when the worker is done, 
                 // this is where the data will be returned and the dom can therefore be used.
                 var mainArray = e.data;
@@ -35,7 +35,7 @@ function get_json_worker(){
                    divElement.appendChild(imgElement);
                 }
             } 
-            worker.postMessage();
+            worker_main.postMessage();
 }
 
 
@@ -51,12 +51,11 @@ function pageLoaded() {
 // to store the old parent to see if it is the same.
 var opensParent = null;
 var openDiv = null;
-
-
         
 // function for ONCLICK of images 
 //********** <id> is to find parent while <dir> is to style menu
 function showCreateMenu(id, dir) {
+
   var element = null;
   //  1. is it the same div that is already open?
   //   1.1. ** Yes **
@@ -70,6 +69,31 @@ function showCreateMenu(id, dir) {
   }
   //   1.2. ** No **
   else{
+    // Create worker
+    var worker_menu = new Worker("workersMenu.js?version=1");
+    // Set Callback function        
+    worker_menu.onmessage = function(e) {
+      // get data that is passed form the worker
+      var menuArray = e.data;
+      // Create the HTML elements and give them the right attributes
+      // ** Left div
+      divMenu = document.createElement('div');
+      divMenu.className = "left-menu";
+      // ** Left div's content
+      imgMenu = document.createElement('img');
+      imgMenu.setAttribute('src', menuArray.Special.image);
+      imgMenu.setAttribute('alt', 'Special dish picture');
+      // ** Price
+      h2Price = document.createElement('h2');
+      h2Price.HTML = menuArray.Special.Price;
+
+      // ** Rigth div
+
+      imgRecommended = document.createElement('img');
+
+      //
+    }
+
         if(openDiv){
           openDiv.style.height = '0px';
         }
