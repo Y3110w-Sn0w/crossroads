@@ -34,6 +34,7 @@ function get_json_worker(){
                    imgElement.setAttribute('onclick','showCreateMenu(' + (counter - 1) + ', "' + dir + '");');
                    divElement.appendChild(imgElement);
                 }
+                worker_main.terminate();
             } 
             worker_main.postMessage();
 }
@@ -70,26 +71,32 @@ function showCreateMenu(id, dir) {
   //   1.2. ** No **
   else{
     // Create worker
-    var worker_menu = new Worker("workersMenu.js?version=1");
+    var worker_menu = new Worker("workerMenu.js?version=1");
     // Set Callback function        
     worker_menu.onmessage = function(e) {
       // get data that is passed form the worker
       var menuArray = e.data;
       // Create the HTML elements and give them the right attributes
       // ** Left div
-      divMenu = document.createElement('div');
-      divMenu.className = "left-menu";
+      // divMenu = document.createElement('div');
+      // divMenu.className = "left-menu";
       // ** Left div's content
-      imgMenu = document.createElement('img');
-      imgMenu.setAttribute('src', menuArray.Special.image);
-      imgMenu.setAttribute('alt', 'Special dish picture');
+      // imgMenu = document.createElement('img');
+      // imgMenu.setAttribute('src', menuArray.Special.image);
+      // imgMenu.setAttribute('alt', 'Special dish picture');
       // ** Price
-      h2Price = document.createElement('h2');
-      h2Price.HTML = menuArray.Special.Price;
+      // h2Price = document.createElement('h2');
+      // h2Price.HTML = menuArray.Special.Price;
 
       // ** Rigth div
 
-      imgRecommended = document.createElement('img');
+      // imgRecommended = document.createElement('img');
+      // console.log(menuArray);
+      for(var type in menuArray){
+        var value = menuArray[type];
+        console.log(type);
+        console.log(value);
+      }
 
       //
     }
@@ -104,7 +111,7 @@ function showCreateMenu(id, dir) {
             element = document.getElementById("menu"+id+" "+dir);
             element.style.height = '150px';
             //           ** fill the div with the menu data **
-// worker stuff should go here to get the menu data
+            worker_menu.postMessage(id);
             //           ** element is now an open div **
             openDiv = element;
             //           ** all done here **
@@ -122,7 +129,7 @@ function showCreateMenu(id, dir) {
             //           ** append the child **
             opensParent.appendChild(element);
             //           ** fill the div with the menu data **
-// worker stuff again to get menu data. 
+            worker_menu.postMessage(id);
             //           ** set the menu to an expanded state **
             setTimeout(function(){element.style.height = '150px'},10);
             //           ** element is now an open div **
