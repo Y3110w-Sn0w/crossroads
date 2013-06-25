@@ -115,6 +115,7 @@ function showCreateMenu(id, dir) {
             //           ** element is now an open div **
             openDiv = element;
             //           ** all done here **
+            
             return;
         }
         //   1.2.2 ** div does not exist **
