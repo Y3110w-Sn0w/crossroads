@@ -1,6 +1,6 @@
 // AJAX to manage JSON file
 function get_json_worker(){
-            var worker_main = new Worker("workersMain.js?version=1");
+  var worker_main = new Worker("workersMain.js?version=1");
             // this is where all of our DOM code will go?
             worker_main.onmessage = function(e){
                 //put all the dom functions here because when the worker is done, 
@@ -10,12 +10,12 @@ function get_json_worker(){
                 var counter = 0;
                 // loop that goes through and creates the booth images and the div for each set of images.
                 for(var i = 0; i < mainArray.length; i++){
-                   var divElement;
-                   var dir = 'right';
+                 var divElement;
+                 var dir = 'right';
 
                    //This if is to create a container for two booths at a time.
                    if(i == 0 || i % 2 == 0){
-                       dir = 'left';
+                     dir = 'left';
                        //here is the creation of the div(here, there is only one per two booths)
                        divElement = document.createElement('div');
                        //here we assign the div a unique id.. we may eventually get rid of this div if we can
@@ -24,7 +24,7 @@ function get_json_worker(){
                        //here we take the main div in the body of html and fill it with the above created.
                        document.getElementById('centerDiv').appendChild(divElement);
                        counter++;
-                   }
+                     }
                    //create an img element that we will use for each booth.
                    var imgElement = document.createElement('img'); 
                    //grab the url for each booth and place it in the src attribute.
@@ -33,18 +33,18 @@ function get_json_worker(){
                    // for each image, we will pass the number as an id and add create and populate a menu on the fly.
                    imgElement.setAttribute('onclick','showCreateMenu(' + (counter - 1) + ', "' + dir + '");');
                    divElement.appendChild(imgElement);
-                }
-                worker_main.terminate();
-            } 
-            worker_main.postMessage();
-}
+                 }
+                // worker_main.terminate();
+              } 
+              worker_main.postMessage();
+            }
 
 
 
             
 // Add the above functions inside pageLoaded() if you want then to run after the page is loaded on the browser
 function pageLoaded() {
-    get_json_worker();
+  get_json_worker();
 }
 
 
@@ -52,7 +52,7 @@ function pageLoaded() {
 // to store the old parent to see if it is the same.
 var opensParent = null;
 var openDiv = null;
-        
+
 // function for ONCLICK of images 
 //********** <id> is to find parent while <dir> is to style menu
 function showCreateMenu(id, dir) {
@@ -61,13 +61,13 @@ function showCreateMenu(id, dir) {
   //  1. is it the same div that is already open?
   //   1.1. ** Yes **
   if(document.getElementById("menu"+id+" "+dir) == openDiv && document.getElementById("menu"+id+" "+dir)){
-        openDiv.style.height = '0px';
+    openDiv.style.height = '0px';
         //      ** there are no open divs anymore **
         openDiv = null;
         opensParent = null;
         // ** nothing more needs done **
         return;
-  }
+      }
   //   1.2. ** No **
   else{
     // Create worker
@@ -76,47 +76,94 @@ function showCreateMenu(id, dir) {
     worker_menu.onmessage = function(e) {
       // get data that is passed form the worker
       var menuArray = e.data;
-      // Create the HTML elements and give them the right attributes
-      // ** Left div
-      // divMenu = document.createElement('div');
-      // divMenu.className = "left-menu";
-      // ** Left div's content
-      // imgMenu = document.createElement('img');
-      // imgMenu.setAttribute('src', menuArray.Special.image);
-      // imgMenu.setAttribute('alt', 'Special dish picture');
-      // ** Price
-      // h2Price = document.createElement('h2');
-      // h2Price.HTML = menuArray.Special.Price;
 
-      // ** Rigth div
-
-      // imgRecommended = document.createElement('img');
-      // console.log(menuArray);
+      // Set up variables for the menus items retrieved in menuArray
+      var menuFood, menuImage, menuPrice, menuRating;
+      // Set up variables for the HTML elements that will be created
+      var rightDiv, leftDiv, imgDish, priceElement, starsDiv, nameDish, btnFav, btnImg; 
+      // Use "reflection" to get the elements inside menu in booths.json
       for(var type in menuArray){
+        // Get the menu element's content (NOT the index, but its content)
         var value = menuArray[type];
-        console.log(type);
-        console.log(value);
+
+        // Store the elements in variables
+        menuFood = value.food;
+        menuImage = value.image;
+        menuPrice = value.price;
+        menuRating = value.rating; // ---> not being used
+        
+        // Create HTML elements and set their attributes
+        leftDiv = document.createElement('div');
+        leftDiv.className = 'menuLeftDiv';
+
+        imgDish = document.createElement('img');
+        imgDish.src = menuImage;
+        imgDish.alt = 'Picture of the dish';
+
+        priceElement = document.createElement('h2');
+        priceElement.className = 'menuPrice';
+        priceElement.innerHTML = menuPrice;
+
+        starsDiv = document.createElement('div');
+        starsDiv.className = 'menuRating';
+
+        nameDish = document.createElement('h1');
+        nameDish.className = 'menuDishName';
+        nameDish.innerHTML = menuFood;
+
+        rightDiv = document.createElement('div');
+        rightDiv.className = 'menuRightDiv';
+
+        btnFav = document.createElement('button');
+        btnFav.type = 'button';
+        
+        btnImg = document.createElement('img');
+        btnImg.src = '#'; // ----------> Put the right URL for the STAR image here
+        btnImg.alt = 'Add to favorite icon';
+        btnFav.appendChild(btnImg);
+
+        // ** This is the HTML that should be created
+        // <div class="menuLeftDiv">
+        //   <img src= menuImage />
+        //   <h2>menuPrice</h2>
+        //   <div class="menuRating"></div> <!-- the stars will be put on the background, and we will dynamically control the width of the div -->
+        //   <h1>menuFood</h1>
+        // </div>
+        // <div class="menuRightMenu">
+        //   <button><img src="#"></button>
+        // </div>
+
+        // Append the elements to their parents
+          document.getElementById("menu"+id+" "+dir).appendChild(leftDiv);
+          leftDiv.appendChild(imgDish);
+          leftDiv.appendChild(priceElement);
+          leftDiv.appendChild(starsDiv);
+          leftDiv.appendChild(nameDish);
+        
+          document.getElementById("menu"+id+" "+dir).appendChild(rightDiv);
+          rightDiv.appendChild(btnFav); 
+               
       }
+    } // worker_menu END
 
-      //
+    if(openDiv){
+      openDiv.style.height = '0px';
     }
-
-        if(openDiv){
-          openDiv.style.height = '0px';
-        }
         // ///// put up a div for the menu. ///////
         //     1.2.1 ** the div already exists! **
         if(document.getElementById("menu"+id+" "+dir)){
             //           ** animate div to 150px **
             element = document.getElementById("menu"+id+" "+dir);
             element.style.height = '150px';
+            //           ** Delete the data in the div before refilling it
+            element.innerHTML = '';
             //           ** fill the div with the menu data **
             worker_menu.postMessage(id);
             //           ** element is now an open div **
             openDiv = element;
             //           ** all done here **
             return;
-        }
+          }
         //   1.2.2 ** div does not exist **
         else{
             //           ** create the new element to be added **
@@ -134,24 +181,9 @@ function showCreateMenu(id, dir) {
             setTimeout(function(){element.style.height = '150px'},10);
             //           ** element is now an open div **
             openDiv = element;
-        } 
-    }
-}
-
-
-// The Dynamic HTML that we will create using JavaScript and workers
-// <div id="the dynamic menu div">
-//   <div id="dynamic">
-//     <img src="grabbed from JSON object" />
-//     <h2>Price</h2>
-//     <div id="rating-bar"></div> <!-- the stars will be put on the background, and we will dynamically control the width of the div -->
-//     <h1>Dish Name</h1>
-//   </div>
-//   <div id="fav-btn">
-//     <button><img src="favorite-star"></button>
-//     <p>Add to Favorite</p>
-//   </div>
-// </div>
+          } 
+        }
+      }
 
 // LEAVE THIS CODE ALWAYS AT THE BOTTOM
 // Load all functions after page is completely loaded
