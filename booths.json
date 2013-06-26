@@ -8,16 +8,16 @@
          "time":"11am-5pm",
          "menu":{
             "Special":{
-               "Food":"BBQ Chicken Pizza",
+               "food":"BBQ Chicken Pizza",
                "image":"images/tuscanvalleyreg.gif",
-               "Price":"4.50",
-               "Rating":"3.5"
+               "price":"4.50",
+               "rating":"3.5"
             },
             "Recommended":{
-               "Food":"Fetechine Alfredo",
-               "image":"images/tuscanvalleyreg.gif",
-               "Price":"3.50",
-               "Rating":"2.8"
+               "food":"Fetechine Alfredo",
+               "image":"imagßes/tuscanvalleyreg.gif",
+               "price":"3.50",
+               "rating":"2.8"
             }
          }
       },
@@ -29,16 +29,16 @@
          "time":"8am-6pm",
          "menu":{
             "Special":{
-               "Food":"yayspecial",
+               "food":"yayspecial",
                "image":"images/calientereg.gif",
-               "Price":"4.3",
-               "Rating":"5"
+               "price":"4.3",
+               "rating":"5"
             },
             "Recommended":{
-               "Food":"yayrecommended",
+               "food":"yayrecommended",
                "image":"images/calientereg.gif",
-               "Price":"2.40",
-               "Rating":"3"
+               "price":"2.40",
+               "rating":"3"
             }
          }
       },
@@ -50,16 +50,16 @@
          "time":"9am-6pm",
          "menu":{
             "Special":{
-               "Food":"yayspecial2",
+               "food":"yayspecial2",
                "image":"images/chefspointreg.gif",
-               "Price":"4.3",
-               "Rating":"5"
+               "price":"4.3",
+               "rating":"5"
             },
             "Recommended":{
-               "Food":"yayrecommended2",
+               "food":"yayrecommended2",
                "image":"images/chefspointreg.gif",
-               "Price":"2.40",
-               "Rating":"3"
+               "price":"2.40",
+               "rating":"3"
             }
          }
       },
@@ -71,16 +71,16 @@
          "time":"10am-6pm",
          "menu":{
             "Special":{
-               "Food":"yayspecial3",
+               "food":"yayspecial3",
                "image":"images/pastrykitchenreg.gif",
-               "Price":"4.3",
-               "Rating":"5"
+               "price":"4.3",
+               "rating":"5"
             },
             "Recommended":{
-               "Food":"yayrecommended3",
+               "food":"yayrecommended3",
                "image":"images/pastrykitchenreg.gif",
-               "Price":"2.40",
-               "Rating":"3"
+               "price":"2.40",
+               "rating":"3"
             }
          }
       },
@@ -92,16 +92,16 @@
          "time":"8am-4pm",
          "menu":{
             "Special":{
-               "Food":"yayspecial4",
+               "food":"yayspecial4",
                "image":"images/henrysforkreg.gif",
-               "Price":"4.3",
-               "Rating":"5"
+               "price":"4.3",
+               "rating":"5"
             },
             "Recommended":{
-               "Food":"yayrecommended4",
+               "food":"yayrecommended4",
                "image":"images/henrysforkreg.gif",
-               "Price":"2.40",
-               "Rating":"3"
+               "price":"2.40",
+               "rating":"3"
             }
          }
       },
@@ -113,16 +113,16 @@
          "time":"10am-3pm",
          "menu":{
             "Special":{
-               "Food":"yayspecial5",
+               "food":"yayspecial5",
                "image":"images/grandtetonreg.gif",
-               "Price":"4.3",
-               "Rating":"5"
+               "price":"4.3",
+               "rating":"5"
             },
             "Recommended":{
-               "Food":"yayrecommended5",
+               "food":"yayrecommended5",
                "image":"images/grandtetonreg.gif",
-               "Price":"2.40",
-               "Rating":"3"
+               "price":"2.40",
+               "rating":"3"
             }
          }
       },
@@ -134,16 +134,16 @@
          "time":"5am-8pm",
          "menu":{
             "Special":{
-               "Food":"yayspecial6",
+               "food":"yayspecial6",
                "image":"images/pastrykitchenreg.gif",
-               "Price":"4.3",
-               "Rating":"5"
+               "price":"4.3",
+               "rating":"5"
             },
             "Recommended":{
-               "Food":"yayrecommended6",
+               "food":"yayrecommended6",
                "image":"images/calientereg.gif",
-               "Price":"2.40",
-               "Rating":"3"
+               "price":"2.40",
+               "rating":"3"
             }
          }
       },
@@ -155,16 +155,16 @@
          "time":"6am-8pm",
          "menu":{
             "Special":{
-               "Food":"yayspecial7",
+               "food":"yayspecial7",
                "image":"images/grandtetonreg.gif",
-               "Price":"4.3",
-               "Rating":"5"
+               "price":"4.3",
+               "rating":"5"
             },
             "Recommended":{
-               "Food":"yayrecommended7",
+               "food":"yayrecommended7",
                "image":"images/henrysforkreg.gif",
-               "Price":"2.40",
-               "Rating":"3"
+               "price":"2.40",
+               "rating":"3"
             }
          }
       },
@@ -177,16 +177,16 @@
          "menu":{
             "Pizza":{
                "From":"Tuscan Valley",
-               "Food":"yayspecial7",
+               "food":"yayspecial7",
                "image":"images/tuscanvalleyreg.gif",
-               "Price":"4.3",
-               "Rating":"5"
+               "price":"4.3",
+               "rating":"5"
             },
             "Recommended":{
-               "Food":"yayrecommended7",
+               "food":"yayrecommended7",
                "From":"Tuscan Valley",
-               "image":"images/tuscanvalleyreg.gif",
-               "Price":"2.40",
+               "pmage":"images/tuscanvalleyreg.gif",
+               "rrice":"2.40",
                "Rating":"3"
             }
          }
@@ -200,16 +200,16 @@
          "menu":{
             "Item 1":{
                "From":"Tuscan Valley",
-               "Food":"yayspecial7",
+               "food":"yayspecial7",
                "image":"images/tuscanvalleyreg.gif",
-               "Price":"4.3",
-               "Rating":"5"
+               "price":"4.3",
+               "rating":"5"
             },
             "Item 2":{
-               "Food":"yayrecommended7",
+               "food":"yayrecommended7",
                "From":"Tuscan Valley",
-               "image":"images/tuscanvalleyreg.gif",
-               "Price":"2.40",
+               "pmage":"images/tuscanvalleyreg.gif",
+               "rrice":"2.40",
                "Rating":"3"
             }
          }
