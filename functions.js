@@ -80,7 +80,7 @@ function showCreateMenu(id, dir) {
       // Set up variables for the menus items retrieved in menuArray
       var menuFood, menuImage, menuPrice, menuRating;
       // Set up variables for the HTML elements that will be created
-      var rightDiv, leftDiv, imgDish, priceElement, starsDiv, nameDish, btnFav, btnImg; 
+      var rightDiv, leftDiv, imgDish, priceElement, starsDiv, nameDish, btnImg; 
       // Use "reflection" to get the elements inside menu in booths.json
       for(var type in menuArray){
         // Get the menu element's content (NOT the index, but its content)
@@ -102,7 +102,7 @@ function showCreateMenu(id, dir) {
 
         priceElement = document.createElement('h2');
         priceElement.className = 'menuPrice';
-        priceElement.innerHTML = menuPrice;
+        priceElement.innerHTML = '$' + menuPrice;
 
         starsDiv = document.createElement('div');
         starsDiv.className = 'menuRating';
@@ -113,24 +113,20 @@ function showCreateMenu(id, dir) {
 
         rightDiv = document.createElement('div');
         rightDiv.className = 'menuRightDiv';
-
-        btnFav = document.createElement('button');
-        btnFav.type = 'button';
         
         btnImg = document.createElement('img');
         btnImg.src = '#'; // ----------> Put the right URL for the STAR image here
         btnImg.alt = 'Add to favorite icon';
-        btnFav.appendChild(btnImg);
 
         // ** This is the HTML that should be created
         // <div class="menuLeftDiv">
         //   <img src= menuImage />
-        //   <h2>menuPrice</h2>
-        //   <div class="menuRating"></div> <!-- the stars will be put on the background, and we will dynamically control the width of the div -->
+        //   <h2 class="menuPrice"></h2>
+        //   <div class="menuRating"></div>
         //   <h1>menuFood</h1>
         // </div>
         // <div class="menuRightMenu">
-        //   <button><img src="#"></button>
+        //   <img src="#">
         // </div>
 
         // Append the elements to their parents
@@ -141,7 +137,7 @@ function showCreateMenu(id, dir) {
           leftDiv.appendChild(nameDish);
         
           document.getElementById("menu"+id+" "+dir).appendChild(rightDiv);
-          rightDiv.appendChild(btnFav); 
+          rightDiv.appendChild(btnImg); 
                
       }
     } // worker_menu END
