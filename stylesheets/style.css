@@ -2,7 +2,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
   display: block;
 }
 
-body {
+html, body {
 	margin: 0;
 	padding: 0;
 }
@@ -63,6 +63,41 @@ body {
 	background-color: #A39C98;
 	box-shadow: 6px 6px 15px #212121;
 	height: 0px;
-    overflow: hidden;
+    overflow: auto;
     -webkit-transition: height .5s; /* Safari and Chrome */
+}
+
+/* Style the menu div that is dynamically created by Worker worker_menu */
+.menuLeftDiv {
+	float: left;
+	width: 70%;
+}
+
+.menuLeftDiv img {
+	height: auto;
+	width: 70px;
+}
+
+.menuRightDiv {
+	float: right;
+	width: 30%;
+}
+
+.menuRightDiv img{
+	height: auto;
+	width: 60px;
+}
+
+.menuPrice {
+	font-size: 1.2em;
+	margin: 0;
+}
+
+.menuRating {
+	width: 50%;
+}
+
+.menuDishName {
+	font-size: 1em;
+	margin: 0;
 }
