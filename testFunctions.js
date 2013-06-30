@@ -33,7 +33,7 @@ function get_json_worker(){
                    divElement = document.createElement('div');
                    //here we assign the div a unique id.. we may eventually get rid of this div if we can
                    //figure out a more responsive approach so that how many we have wide will be dynamic.
-                   divElement.id = 'div ' + counter;
+                   divElement.id = counter;
                    //here we take the main div in the body of html and fill it with the above created.
                    document.getElementById('centerDiv').appendChild(divElement);
                    counter++;
@@ -44,8 +44,13 @@ function get_json_worker(){
                var url = mainArray[i];
                imgElement.setAttribute("src",url);
                // for each image, we will pass the number as an id and add create and populate a menu on the fly.
-               imgElement.onclick = clicked(getMenu, this);
-               imgElement.className = (counter - 1) + ' ' + dir;
+               if(i > mainArray.length - 2){
+                  imgElement.setAttribute("onclick","clicked('getFav',this)");
+               }else{
+                  imgElement.setAttribute("onclick","clicked('getMenu', this)");
+               }
+               imgElement.className = dir;
+               imgElement.id = i;
                divElement.appendChild(imgElement);
            }
           // worker_main.terminate();
@@ -66,17 +71,34 @@ function clicked(cmd, element){
 
 
 
+function addFav(){
+    this.funStuff = {"Action":"Punched people really hard in the face." + Punch.arguments[0]};
+    localStorage.setItem('last',JSON.stringify(this.funStuff));
+}
+
+function getFav(){
+  var happend = JSON.parse(localStorage.getItem('last'));
+    if(happend == null){
+      happend = {"Action":"Empty"};
+    }
+    console.log(happend.Action);
+}
+
+
+
 
 // function for ONCLICK of images 
 //********** <id> is to find parent while <dir> is to style menu
-function showCreateMenu(element) {
-
-  var id = element.className;
+function showCreateMenu(clkElement) {
+  //dir is the class name for each booth (left or right)
+  var dir = clkElement.className;
+  //We get the parent and use it to append the new child or change the existing.
+  var clkParent = clkElement.parentNode;
 
   var element = null;
   //  1. is it the same div that is already open?
   //   1.1. ** Yes **
-  if(document.getElementById("menu"+id+" "+dir) == openDiv && document.getElementById("menu"+id+" "+dir)){
+  if(document.getElementById("menu"+clkParent.id+" "+dir) == openDiv && document.getElementById("menu"+clkParent.id+" "+dir)){
     openDiv.style.height = '0px';
         //      ** there are no open divs anymore **
         openDiv = null;
@@ -89,21 +111,88 @@ function showCreateMenu(element) {
         // Create worker
         var worker_menu = new Worker("workerMenu.js?version=1");
         // Set Callback function        
-        worker_menu.onmessage = onMenuMessage(e);
+        worker_menu.onmessage = function(e) {
+            // get data that is passed form the worker
+            var menuArray = e.data;
+
+            // Set up variables for the menus items retrieved in menuArray
+            var menuFood, menuImage, menuPrice, menuRating;
+            // Set up variables for the HTML elements that will be created
+            var rightDiv, leftDiv, imgDish, priceElement, starsDiv, nameDish, btnImg; 
+            // Use "reflection" to get the elements inside menu in booths.json
+            for(var type in menuArray){
+              // Get the menu element's content (NOT the index, but its content)
+              var value = menuArray[type];
+
+              // Store the elements in variables
+              menuFood = value.food;
+              menuImage = value.image;
+              menuPrice = value.price;
+              menuRating = value.rating; // ---> not being used
+              
+              // Create HTML elements and set their attributes
+              leftDiv = document.createElement('div');
+              leftDiv.className = 'menuLeftDiv';
+
+              imgDish = document.createElement('img');
+              imgDish.src = menuImage;
+              imgDish.alt = 'Picture of the dish';
+
+              priceElement = document.createElement('h2');
+              priceElement.className = 'menuPrice';
+              priceElement.innerHTML = '$' + menuPrice;
+
+              starsDiv = document.createElement('div');
+              starsDiv.className = 'menuRating';
+
+              nameDish = document.createElement('h1');
+              nameDish.className = 'menuDishName';
+              nameDish.innerHTML = menuFood;
+
+              rightDiv = document.createElement('div');
+              rightDiv.className = 'menuRightDiv';
+              
+              btnImg = document.createElement('img');
+              btnImg.src = '#'; // ----------> Put the right URL for the STAR image here
+              btnImg.alt = 'Add to favorite icon';
+
+              // ** This is the HTML that should be created
+              // <div class="menuLeftDiv">
+              //   <img src= menuImage />
+              //   <h2 class="menuPrice"></h2>
+              //   <div class="menuRating"></div>
+              //   <h1>menuFood</h1>
+              // </div>
+              // <div class="menuRightMenu">
+              //   <img src="#">
+              // </div>
+
+              // Append the elements to their parents
+                document.getElementById("menu"+clkParent.id+" "+dir).appendChild(leftDiv);
+                leftDiv.appendChild(imgDish);
+                leftDiv.appendChild(priceElement);
+                leftDiv.appendChild(starsDiv);
+                leftDiv.appendChild(nameDish);
+              
+                document.getElementById("menu"+clkParent.id+" "+dir).appendChild(rightDiv);
+                rightDiv.appendChild(btnImg); 
+                 
+            }
+        } // worker_menu END
 
         if(openDiv){
           openDiv.style.height = '0px';
         }
         // ///// put up a div for the menu. ///////
         //     1.2.1 ** the div already exists! **
-        if(document.getElementById("menu"+id+" "+dir)){
+        if(document.getElementById("menu"+clkParent.id+" "+dir)){
             //           ** animate div to 150px **
-            element = document.getElementById("menu"+id+" "+dir);
+            element = document.getElementById("menu"+clkParent.id+" "+dir);
             element.style.height = '150px';
             //           ** Delete the data in the div before refilling it
             element.innerHTML = '';
             //           ** fill the div with the menu data **
-            worker_menu.postMessage(id);
+            worker_menu.postMessage(clkElement.id);
             //           ** element is now an open div **
             openDiv = element;
             //           ** all done here **
@@ -115,14 +204,14 @@ function showCreateMenu(element) {
             //           ** create the new element to be added **
             element = document.createElement('div');
             //           ** add the id that we need for future manipulation **
-            element.id = "menu"+id+" "+dir;
+            element.id = "menu"+clkParent.id+" "+dir;
             element.className = 'tile-menu';
             //           ** get the parent div so we can append the new child **
-            opensParent = document.getElementById("div "+id);
+            opensParent = clkParent;
             //           ** append the child **
             opensParent.appendChild(element);
             //           ** fill the div with the menu data **
-            worker_menu.postMessage(id);
+            worker_menu.postMessage(clkElement.id);
             //           ** set the menu to an expanded state **
             setTimeout(function(){element.style.height = '150px'},10);
             //           ** element is now an open div **
@@ -139,74 +228,7 @@ function pageLoaded() {
 }
 
 
-function onMenuMessage(e) {
-        // get data that is passed form the worker
-        var menuArray = e.data;
 
-        // Set up variables for the menus items retrieved in menuArray
-        var menuFood, menuImage, menuPrice, menuRating;
-        // Set up variables for the HTML elements that will be created
-        var rightDiv, leftDiv, imgDish, priceElement, starsDiv, nameDish, btnImg; 
-        // Use "reflection" to get the elements inside menu in booths.json
-        for(var type in menuArray){
-          // Get the menu element's content (NOT the index, but its content)
-          var value = menuArray[type];
-
-          // Store the elements in variables
-          menuFood = value.food;
-          menuImage = value.image;
-          menuPrice = value.price;
-          menuRating = value.rating; // ---> not being used
-          
-          // Create HTML elements and set their attributes
-          leftDiv = document.createElement('div');
-          leftDiv.className = 'menuLeftDiv';
-
-          imgDish = document.createElement('img');
-          imgDish.src = menuImage;
-          imgDish.alt = 'Picture of the dish';
-
-          priceElement = document.createElement('h2');
-          priceElement.className = 'menuPrice';
-          priceElement.innerHTML = '$' + menuPrice;
-
-          starsDiv = document.createElement('div');
-          starsDiv.className = 'menuRating';
-
-          nameDish = document.createElement('h1');
-          nameDish.className = 'menuDishName';
-          nameDish.innerHTML = menuFood;
-
-          rightDiv = document.createElement('div');
-          rightDiv.className = 'menuRightDiv';
-          
-          btnImg = document.createElement('img');
-          btnImg.src = '#'; // ----------> Put the right URL for the STAR image here
-          btnImg.alt = 'Add to favorite icon';
-
-          // ** This is the HTML that should be created
-          // <div class="menuLeftDiv">
-          //   <img src= menuImage />
-          //   <h2 class="menuPrice"></h2>
-          //   <div class="menuRating"></div>
-          //   <h1>menuFood</h1>
-          // </div>
-          // <div class="menuRightMenu">
-          //   <img src="#">
-          // </div>
-
-          // Append the elements to their parents
-            document.getElementById("menu"+id+" "+dir).appendChild(leftDiv);
-            leftDiv.appendChild(imgDish);
-            leftDiv.appendChild(priceElement);
-            leftDiv.appendChild(starsDiv);
-            leftDiv.appendChild(nameDish);
-          
-            document.getElementById("menu"+id+" "+dir).appendChild(rightDiv);
-            rightDiv.appendChild(btnImg); 
-                 
-        }
-} // worker_menu END
 
 
 // LEAVE THIS CODE ALWAYS AT THE BOTTOM
