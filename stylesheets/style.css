@@ -89,7 +89,10 @@ html, body {
 }
 
 .menuPrice {
-	font-size: 1.2em;
+	font-size: 0.9em;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-weight: normal;
+	color: #fce6ab;
 	margin: 0;
 }
 
@@ -98,6 +101,8 @@ html, body {
 }
 
 .menuDishName {
-	font-size: 1em;
+	font-size: 0.9em;
+	font-family: "Times New Roman", Times, serif;
+	font-weight: normal;
 	margin: 0;
 }
