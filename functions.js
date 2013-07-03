@@ -3,8 +3,8 @@
 var functionMap = new Object();
 // we need to have a command for every option 
 // (booth clicked, add to favorites, favorites clicked, history clicked)
-functionMap["getMenu"] = showCreateMenu;
-functionMap["addFav"] = addFav;
+functionMap.getMenu = showCreateMenu;
+functionMap.addFav = addFav;
 functionMap["getFav"] = getFav;
 // to store the old parent to see if it is the same.
 var opensParent = null;
@@ -84,9 +84,16 @@ function getFav(element){
     console.log(happend.Action);
 }
 
-function scrollTo(element){
-  setInterval(function(){element.scrollIntoView(false)},600);
-  
+function scrollToMe(pageElement){
+    var positionX = 0,         
+        positionY = 0;    
+
+    while(pageElement != null){        
+        positionX += pageElement.offsetLeft;        
+        positionY += pageElement.offsetTop;        
+        pageElement = pageElement.offsetParent;        
+        window.scrollTo(positionX, positionY);  
+    }
 }
 
 
@@ -199,7 +206,7 @@ function showCreateMenu(clkElement) {
             //           ** fill the div with the menu data **
             worker_menu.postMessage(clkElement.id);
             // scroll to the open element;
-            scrollTo(element);
+            setInterval(scrollToMe(element),600);
             //           ** element is now an open div **
             openDiv = element;
             //           ** all done here **
@@ -220,7 +227,7 @@ function showCreateMenu(clkElement) {
             //           ** fill the div with the menu data **
             worker_menu.postMessage(clkElement.id);
             // scroll to the open element;
-            scrollTo(element);
+            setInterval(scrollToMe(element),600);
             //           ** set the menu to an expanded state **
             setTimeout(function(){element.style.height = '150px'},10);
             //           ** element is now an open div **
