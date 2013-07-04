@@ -71,17 +71,40 @@ function clicked(cmd, element){
 
 
 
-function addFav(element){
-    this.funStuff = {"Action":"Punched people really hard in the face." + Punch.arguments[0]};
-    localStorage.setItem('last',JSON.stringify(this.funStuff));
+function addFav(dishLStitle){
+  //variable for new data that needs to be stored
+    var storeMe = new Object();
+    // see if there was data sent in to be stored.
+    if(dishLStitle){
+      dishLS = lsinfo[dishLStitle];
+      //now we need to see if there is something already in LS. 
+      if(localStorage.getItem('menus')){
+        storeMe = JSON.parse(localStorage.getItem('menus'));
+        storeMe[dishLStitle] = dishLS;
+      }
+      //no LS existed before. Store new stuff.
+      else{
+        // store the two variables from the array into the storeMe as an Object.
+        storeMe[dishLStitle] = dishLS;
+      }
+    }
+    //there was no data passed in so set it to null.
+    else{
+      storeMe = null;
+    }
+
+    localStorage.setItem('menus',JSON.stringify(storeMe));
+    return;
 }
 
 function getFav(element){
-  var happend = JSON.parse(localStorage.getItem('last'));
-    if(happend == null){
-      happend = {"Action":"Empty"};
+    var favorites = JSON.parse(localStorage.getItem('menus'));
+    if(favorites == null){
+      favorites = {"menus":"Empty"};
     }
-    console.log(happend.Action);
+    // createMenu(favorites);
+    console.log(favorites);
+
 }
 
 function scrollToMe(pageElement){
@@ -98,7 +121,10 @@ function scrollToMe(pageElement){
 
 
 
-
+// var i = 0;  
+// this array is for each individual menu item?
+var lsinfo = new Object();
+// var instanceArray = new Array();
 // function for ONCLICK of images 
 //********** <id> is to find parent while <dir> is to style menu
 function showCreateMenu(clkElement) {
@@ -126,13 +152,14 @@ function showCreateMenu(clkElement) {
         worker_menu.onmessage = function(e) {
             // get data that is passed form the worker
             var menuArray = e.data;
-
-            // Set up variables for the menus items retrieved in menuArray
-            var menuFood, menuImage, menuPrice, menuRating;
             // Set up variables for the HTML elements that will be created
             var rightDiv, leftDiv, imgDish, priceElement, starsDiv, nameDish, btnImg; 
             // Use "reflection" to get the elements inside menu in booths.json
             for(var type in menuArray){
+              // Set up variables for the menus items retrieved in menuArray
+              var menuFood, menuImage, menuPrice, menuRating;
+              // for multidemensional array that will be used for onclick
+              // i++;
               // Get the menu element's content (NOT the index, but its content)
               var value = menuArray[type];
 
@@ -165,8 +192,13 @@ function showCreateMenu(clkElement) {
               rightDiv.className = 'menuRightDiv';
               
               btnImg = document.createElement('img');
-              btnImg.src = '#'; // ----------> Put the right URL for the STAR image here
+              btnImg.src = '/images/favreg.gif';
               btnImg.alt = 'Add to favorite icon';
+              // instanceArray[0] = menuFood;
+              // instanceArray[1] = "menu"+clkParent.id+" "+dir;
+              lsinfo[menuFood] = "menu"+clkParent.id+" "+dir;
+              btnImg.setAttribute("onclick","clicked('addFav','"+menuFood+"');");
+              // console.log(lsinfo);
 
               // ** This is the HTML that should be created
               // <div class="menuLeftDiv">
@@ -206,7 +238,7 @@ function showCreateMenu(clkElement) {
             //           ** fill the div with the menu data **
             worker_menu.postMessage(clkElement.id);
             // scroll to the open element;
-            setInterval(scrollToMe(element),600);
+            setInterval(scrollToMe(element),1000);
             //           ** element is now an open div **
             openDiv = element;
             //           ** all done here **
@@ -227,13 +259,84 @@ function showCreateMenu(clkElement) {
             //           ** fill the div with the menu data **
             worker_menu.postMessage(clkElement.id);
             // scroll to the open element;
-            setInterval(scrollToMe(element),600);
+            setInterval(scrollToMe(element),1000);
             //           ** set the menu to an expanded state **
             setTimeout(function(){element.style.height = '150px'},10);
             //           ** element is now an open div **
             openDiv = element;
         }
     }
+}
+
+// this one maybe would be for the menus on history and favorits?
+function createMenu(menus){
+  for(var menu in menus){
+              // Get the menu element's content (NOT the index, but its content)
+              var value = menus[menu];
+
+              // here is where we need to impliment a worker to get the different foods from the json file...
+
+
+
+
+              // Store the elements in variables
+              menuFood = value.food;
+              menuImage = value.image;
+              menuPrice = value.price;
+              menuRating = value.rating; // ---> not being used
+              
+              // Create HTML elements and set their attributes
+              leftDiv = document.createElement('div');
+              leftDiv.className = 'menuLeftDiv';
+
+              imgDish = document.createElement('img');
+              imgDish.src = menuImage;
+              imgDish.alt = 'Picture of the dish';
+
+              priceElement = document.createElement('h2');
+              priceElement.className = 'menuPrice';
+              priceElement.innerHTML = '$' + menuPrice;
+
+              starsDiv = document.createElement('div');
+              starsDiv.className = 'menuRating';
+
+              nameDish = document.createElement('h1');
+              nameDish.className = 'menuDishName';
+              nameDish.innerHTML = menuFood;
+
+              rightDiv = document.createElement('div');
+              rightDiv.className = 'menuRightDiv';
+              
+              btnImg = document.createElement('img');
+              btnImg.src = '/images/favreg.gif';
+              btnImg.alt = 'Add to favorite icon';
+              lsinfo[0] = menuFood;
+              lsinfo[1] = "menu"+clkParent.id+" "+dir;
+              console.log(lsinfo);
+              btnImg.setAttribute("onclick","clicked('addFav',lsinfo);");
+
+              // ** This is the HTML that should be created
+              // <div class="menuLeftDiv">
+              //   <img src= menuImage />
+              //   <h2 class="menuPrice"></h2>
+              //   <div class="menuRating"></div>
+              //   <h1>menuFood</h1>
+              // </div>
+              // <div class="menuRightMenu">
+              //   <img src="#">
+              // </div>
+
+              // Append the elements to their parents
+                document.getElementById("menu"+clkParent.id+" "+dir).appendChild(leftDiv);
+                leftDiv.appendChild(imgDish);
+                leftDiv.appendChild(priceElement);
+                leftDiv.appendChild(starsDiv);
+                leftDiv.appendChild(nameDish);
+              
+                document.getElementById("menu"+clkParent.id+" "+dir).appendChild(rightDiv);
+                rightDiv.appendChild(btnImg); 
+                 
+            }
 }
 
 
