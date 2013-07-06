@@ -45,12 +45,13 @@ function get_json_worker(){
                imgElement.setAttribute("src",url);
                // for each image, we will pass the number as an id and add create and populate a menu on the fly.
                if(i > mainArray.length - 3){
-                  imgElement.setAttribute("onclick","clicked('getFav',this)");
+                  imgElement.setAttribute("onclick","clicked('getMenu',this)");
+                  imgElement.id = "favorites";
                }else{
                   imgElement.setAttribute("onclick","clicked('getMenu', this)");
+                  imgElement.id = i;
                }
                imgElement.className = dir;
-               imgElement.id = i;
                divElement.appendChild(imgElement);
            }
           // worker_main.terminate();
@@ -102,9 +103,7 @@ function getFav(element){
     if(favorites == null){
       favorites = {"menus":"Empty"};
     }
-    // createMenu(favorites);
-    console.log(favorites);
-
+    return favorites;
 }
 
 function scrollToMe(pageElement){
@@ -132,7 +131,7 @@ function showCreateMenu(clkElement) {
   var dir = clkElement.className;
   //We get the parent and use it to append the new child or change the existing.
   var clkParent = clkElement.parentNode;
-
+  var param = null;
   var element = null;
   //  1. is it the same div that is already open?
   //   1.1. ** Yes **
@@ -146,20 +145,74 @@ function showCreateMenu(clkElement) {
   }
   //   1.2. ** No **
   else{
-        // Create worker
-        var worker_menu = new Worker("workerMenu.js?version=1");
+        // Create worker based on if its a booth or a fav/his
+        if(clkElement.id != 'favorites'){
+            var worker_menu = new Worker("workerMenu.js?version=1");
+            param = clkElement.id;
+        }else{
+            var param = getFav(clkElement);
+            var worker_menu = new Worker("workerFav.js?version=1");
+        }
         // Set Callback function        
         worker_menu.onmessage = function(e) {
             // get data that is passed form the worker
-            var menuArray = e.data;
-            // Set up variables for the HTML elements that will be created
-            var rightDiv, leftDiv, imgDish, priceElement, starsDiv, nameDish, btnImg; 
-            // Use "reflection" to get the elements inside menu in booths.json
-            for(var type in menuArray){
+            var eDataArray = e.data;
+            console.log(eDataArray);
+            createHTML(eDataArray);
+        } // worker_menu END
+
+        if(openDiv){
+          openDiv.style.height = '0px';
+        }
+        // ///// put up a div for the menu. ///////
+        //     1.2.1 ** the div already exists! **
+        if(document.getElementById("menu"+clkParent.id+" "+dir)){
+            //           ** animate div to 150px **
+            element = document.getElementById("menu"+clkParent.id+" "+dir);
+            element.style.height = '150px';
+            //           ** Delete the data in the div before refilling it
+            element.innerHTML = '';
+            //           ** fill the div with the menu data **
+            worker_menu.postMessage(param);
+            // scroll to the open element;
+            setInterval(scrollToMe(element),1000);
+            //           ** element is now an open div **
+            openDiv = element;
+            //           ** all done here **
+            
+            return;
+        }
+        //   1.2.2 ** div does not exist **
+        else{
+            //           ** create the new element to be added **
+            element = document.createElement('div');
+            //           ** add the id that we need for future manipulation **
+            element.id = "menu"+clkParent.id+" "+dir;
+            element.className = 'tile-menu';
+            //           ** get the parent div so we can append the new child **
+            opensParent = clkParent;
+            //           ** append the child **
+            opensParent.appendChild(element);
+            //           ** fill the div with the menu data **
+            worker_menu.postMessage(param);
+            // scroll to the open element;
+            setInterval(scrollToMe(element),1000);
+            //           ** set the menu to an expanded state **
+            setTimeout(function(){element.style.height = '150px'},10);
+            //           ** element is now an open div **
+            openDiv = element;
+        }
+    }
+
+    function createHTML(menuArray){
+              // Set up variables for the HTML elements that will be created
+              var rightDiv, leftDiv, imgDish, priceElement, starsDiv, nameDish, btnImg; 
+              // Use "reflection" to get the elements inside menu in booths.json
+              for(var type in menuArray){
+
               // Set up variables for the menus items retrieved in menuArray
               var menuFood, menuImage, menuPrice, menuRating;
-              // for multidemensional array that will be used for onclick
-              // i++;
+
               // Get the menu element's content (NOT the index, but its content)
               var value = menuArray[type];
 
@@ -194,11 +247,10 @@ function showCreateMenu(clkElement) {
               btnImg = document.createElement('img');
               btnImg.src = '/images/favreg.gif';
               btnImg.alt = 'Add to favorite icon';
-              // instanceArray[0] = menuFood;
-              // instanceArray[1] = "menu"+clkParent.id+" "+dir;
-              lsinfo[menuFood] = "menu"+clkParent.id+" "+dir;
+
+              // This is for putting data in the array for adding to favorites
+              lsinfo[menuFood] = clkParent.id;
               btnImg.setAttribute("onclick","clicked('addFav','"+menuFood+"');");
-              // console.log(lsinfo);
 
               // ** This is the HTML that should be created
               // <div class="menuLeftDiv">
@@ -222,125 +274,10 @@ function showCreateMenu(clkElement) {
                 rightDiv.appendChild(btnImg); 
                  
             }
-        } // worker_menu END
-
-        if(openDiv){
-          openDiv.style.height = '0px';
-        }
-        // ///// put up a div for the menu. ///////
-        //     1.2.1 ** the div already exists! **
-        if(document.getElementById("menu"+clkParent.id+" "+dir)){
-            //           ** animate div to 150px **
-            element = document.getElementById("menu"+clkParent.id+" "+dir);
-            element.style.height = '150px';
-            //           ** Delete the data in the div before refilling it
-            element.innerHTML = '';
-            //           ** fill the div with the menu data **
-            worker_menu.postMessage(clkElement.id);
-            // scroll to the open element;
-            setInterval(scrollToMe(element),1000);
-            //           ** element is now an open div **
-            openDiv = element;
-            //           ** all done here **
-            
-            return;
-        }
-        //   1.2.2 ** div does not exist **
-        else{
-            //           ** create the new element to be added **
-            element = document.createElement('div');
-            //           ** add the id that we need for future manipulation **
-            element.id = "menu"+clkParent.id+" "+dir;
-            element.className = 'tile-menu';
-            //           ** get the parent div so we can append the new child **
-            opensParent = clkParent;
-            //           ** append the child **
-            opensParent.appendChild(element);
-            //           ** fill the div with the menu data **
-            worker_menu.postMessage(clkElement.id);
-            // scroll to the open element;
-            setInterval(scrollToMe(element),1000);
-            //           ** set the menu to an expanded state **
-            setTimeout(function(){element.style.height = '150px'},10);
-            //           ** element is now an open div **
-            openDiv = element;
-        }
-    }
-}
-
-// this one maybe would be for the menus on history and favorits?
-function createMenu(menus){
-  for(var menu in menus){
-              // Get the menu element's content (NOT the index, but its content)
-              var value = menus[menu];
-
-              // here is where we need to impliment a worker to get the different foods from the json file...
-
-
-
-
-              // Store the elements in variables
-              menuFood = value.food;
-              menuImage = value.image;
-              menuPrice = value.price;
-              menuRating = value.rating; // ---> not being used
-              
-              // Create HTML elements and set their attributes
-              leftDiv = document.createElement('div');
-              leftDiv.className = 'menuLeftDiv';
-
-              imgDish = document.createElement('img');
-              imgDish.src = menuImage;
-              imgDish.alt = 'Picture of the dish';
-
-              priceElement = document.createElement('h2');
-              priceElement.className = 'menuPrice';
-              priceElement.innerHTML = '$' + menuPrice;
-
-              starsDiv = document.createElement('div');
-              starsDiv.className = 'menuRating';
-
-              nameDish = document.createElement('h1');
-              nameDish.className = 'menuDishName';
-              nameDish.innerHTML = menuFood;
-
-              rightDiv = document.createElement('div');
-              rightDiv.className = 'menuRightDiv';
-              
-              btnImg = document.createElement('img');
-              btnImg.src = '/images/favreg.gif';
-              btnImg.alt = 'Add to favorite icon';
-              lsinfo[0] = menuFood;
-              lsinfo[1] = "menu"+clkParent.id+" "+dir;
-              console.log(lsinfo);
-              btnImg.setAttribute("onclick","clicked('addFav',lsinfo);");
-
-              // ** This is the HTML that should be created
-              // <div class="menuLeftDiv">
-              //   <img src= menuImage />
-              //   <h2 class="menuPrice"></h2>
-              //   <div class="menuRating"></div>
-              //   <h1>menuFood</h1>
-              // </div>
-              // <div class="menuRightMenu">
-              //   <img src="#">
-              // </div>
-
-              // Append the elements to their parents
-                document.getElementById("menu"+clkParent.id+" "+dir).appendChild(leftDiv);
-                leftDiv.appendChild(imgDish);
-                leftDiv.appendChild(priceElement);
-                leftDiv.appendChild(starsDiv);
-                leftDiv.appendChild(nameDish);
-              
-                document.getElementById("menu"+clkParent.id+" "+dir).appendChild(rightDiv);
-                rightDiv.appendChild(btnImg); 
-                 
-            }
+          }
 }
 
 
-            
 // Add the above functions inside pageLoaded() if you want then to run after the page is loaded on the browser
 function pageLoaded() {
   get_json_worker();
