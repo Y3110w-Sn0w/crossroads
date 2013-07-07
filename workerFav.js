@@ -7,7 +7,7 @@ self.onmessage = function(param){
     hr.onreadystatechange = function(){
         if(hr.readyState == 4 && hr.status == 200){
             var return_data = JSON.parse(hr.responseText);
-            var resultObj; 
+            var resultObj = new Object(); 
             // variable for for loop and indexes
             var indices;
             // a for loop to go through the local storage object.
@@ -15,22 +15,21 @@ self.onmessage = function(param){
                 indices = jsonFav[dish];
                 var i = 1;
                 // store title of booth
-                var boothTitle = return_data.Booths[indices]['title'];
+                var boothTitle = return_data.Booths[indices].title;
                 // grab booth at index
-                var menu = return_data.Booths[indices]['menu'];
+                var menu = return_data.Booths[indices].menu;
                 for(var type in menu){
                     if(dish == menu[type]['food']){
                         // Here, we had to account for if someone 'fav' two
                         // dishes from the same booth. it will display:
                         // "Tuscan Valley 1" then the dish. This prevents 
                         // duplicate keys.
-                        // resultObj[boothTitle + ' ' + i] = new Object();
-                        resultObj[boothTitle + ' ' + i]['food'] = type.food;
-                        resultObj[boothTitle + ' ' + i]['image'] = type.image;
-                        resultObj[boothTitle + ' ' + i]['price'] = type.price;
-                        resultObj[boothTitle + ' ' + i]['rating'] = type.rating;
+                        resultObj[boothTitle + ' ' + i] = new Object();
+                        resultObj[boothTitle + ' ' + i].food = menu[type]['food'];
+                        resultObj[boothTitle + ' ' + i].image = menu[type]['image'];
+                        resultObj[boothTitle + ' ' + i].price = menu[type]['price'];
+                        resultObj[boothTitle + ' ' + i].rating = menu[type]['rating'];
                         i++;
-                        postMessage("im");
                     }
 
                     
@@ -41,7 +40,7 @@ self.onmessage = function(param){
 
             }
 
-            // postMessage(resultObj);
+            postMessage(resultObj);
             self.close();
         }else if(hr.readyState == 4){
             postMessage("Error: "+ hr.status);

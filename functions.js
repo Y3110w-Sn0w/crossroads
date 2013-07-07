@@ -103,6 +103,7 @@ function getFav(element){
     if(favorites == null){
       favorites = {"menus":"Empty"};
     }
+    console.log(favorites);
     return favorites;
 }
 
@@ -173,7 +174,11 @@ function showCreateMenu(clkElement) {
             //           ** Delete the data in the div before refilling it
             element.innerHTML = '';
             //           ** fill the div with the menu data **
-            worker_menu.postMessage(param);
+            if(param.menus == 'Empty'){
+              emptyFav();
+            }else{
+              worker_menu.postMessage(param);
+            }
             // scroll to the open element;
             setInterval(scrollToMe(element),1000);
             //           ** element is now an open div **
@@ -194,7 +199,11 @@ function showCreateMenu(clkElement) {
             //           ** append the child **
             opensParent.appendChild(element);
             //           ** fill the div with the menu data **
-            worker_menu.postMessage(param);
+            if(param.menus == 'Empty'){
+              emptyFav();
+            }else{
+              worker_menu.postMessage(param);
+            }
             // scroll to the open element;
             setInterval(scrollToMe(element),1000);
             //           ** set the menu to an expanded state **
@@ -202,6 +211,12 @@ function showCreateMenu(clkElement) {
             //           ** element is now an open div **
             openDiv = element;
         }
+    }
+
+    function emptyFav(ele){
+      newElement = document.createElement('h2');
+      newElement.innerHTML = 'You have no Favorites.';
+      document.getElementById("menu"+clkParent.id+" "+dir).appendChild(newElement);
     }
 
     function createHTML(menuArray){
