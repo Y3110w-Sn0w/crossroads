@@ -103,7 +103,6 @@ function getFav(element){
     if(favorites == null){
       favorites = {"menus":"Empty"};
     }
-    console.log(favorites);
     return favorites;
 }
 
@@ -158,7 +157,6 @@ function showCreateMenu(clkElement) {
         worker_menu.onmessage = function(e) {
             // get data that is passed form the worker
             var eDataArray = e.data;
-            console.log(eDataArray);
             createHTML(eDataArray);
         } // worker_menu END
 
@@ -247,7 +245,7 @@ function showCreateMenu(clkElement) {
 
               priceElement = document.createElement('h2');
               priceElement.className = 'menuPrice';
-              priceElement.innerHTML = '$' + menuPrice;
+              priceElement.innerHTML = '$' + menuPrice; 
 
               starsDiv = document.createElement('div');
               starsDiv.className = 'menuRating';
@@ -264,7 +262,7 @@ function showCreateMenu(clkElement) {
               btnImg.alt = 'Add to favorite icon';
 
               // This is for putting data in the array for adding to favorites
-              lsinfo[menuFood] = clkParent.id;
+              lsinfo[menuFood] = clkElement.id;
               btnImg.setAttribute("onclick","clicked('addFav','"+menuFood+"');");
 
               // ** This is the HTML that should be created

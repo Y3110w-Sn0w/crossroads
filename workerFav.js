@@ -31,14 +31,13 @@ self.onmessage = function(param){
                         resultObj[boothTitle + ' ' + i].rating = menu[type]['rating'];
                         i++;
                     }
+                }
 
                     
-                }
+            }
                 
                 // example of how it should look: 
                 // resutlObj: { titleOfBooth : { dish }, nextBooth : { dish } }
-
-            }
 
             postMessage(resultObj);
             self.close();
