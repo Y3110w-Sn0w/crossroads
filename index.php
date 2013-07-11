@@ -10,7 +10,7 @@
 <body class="body-bg">
     <div class="main-wrapper">
 
-    <h1 class="top-bar front-10" id="test"><img src="images/mainLogo.gif"></h1>
+    <h1 class="top-bar front-10" id="test"><img src="images/crossroadslogo.png"></h1>
 
         <div class="tile">
             <div id="centerDiv"> <!-- centering div -->

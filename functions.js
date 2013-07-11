@@ -258,7 +258,7 @@ function showCreateMenu(clkElement) {
           rightDiv.className = 'menuRightDiv';
                 
           btnImg = document.createElement('img');
-          btnImg.src = '/images/favreg.gif';
+          btnImg.src = '/images/faved.png';
           btnImg.alt = 'Add to favorite icon';
 
           // This is for putting data in the array for adding to favorites

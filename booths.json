@@ -2,20 +2,20 @@
    "Booths":[
       {
          "title":"Tuscan Valley",
-         "image":"images/tuscanvalleyreg.gif",
+         "image":"images/tuscanvalleyreg.png",
          "rating":4,
          "price":5.9,
          "time":"11am-5pm",
          "menu":{
             "Special":{
-               "food":"BBQ Chicken Pizza",
-               "image":"images/tuscanvalleyreg.gif",
+               "food":"BBQ Chicken",
+               "image":"images/bbqchicken.jpg",
                "price":"4.50",
                "rating":"3.5"
             },
             "Recommended":{
-               "food":"Fetechine Alfredo",
-               "image":"images/tuscanvalleyreg.gif",
+               "food":"Omelette",
+               "image":"images/omelette.jpg",
                "price":"3.50",
                "rating":"2.8"
             }
@@ -23,20 +23,20 @@
       },
       {
          "title":"Caliente",
-         "image":"images/calientereg.gif",
+         "image":"images/calientereg.png",
          "rating":3,
          "price":3.9,
          "time":"8am-6pm",
          "menu":{
             "Special":{
-               "food":"yayspecial",
-               "image":"images/calientereg.gif",
+               "food":"Caliente Burrito",
+               "image":"images/calienteburrito.jpg",
                "price":"4.3",
                "rating":"5"
             },
             "Recommended":{
-               "food":"yayrecommended",
-               "image":"images/calientereg.gif",
+               "food":"Quesadilla",
+               "image":"images/quesadilla.jpg",
                "price":"2.40",
                "rating":"3"
             }
@@ -44,20 +44,20 @@
       },
       {
          "title":"Chefs Point",
-         "image":"images/chefspointreg.gif",
+         "image":"images/chefspointreg.png",
          "rating":5,
          "price":4,
          "time":"9am-6pm",
          "menu":{
             "Special":{
-               "food":"yayspecial2",
-               "image":"images/chefspointreg.gif",
+               "food":"Nutella Crepe",
+               "image":"images/nutellacrepe.jpg",
                "price":"4.3",
                "rating":"5"
             },
             "Recommended":{
-               "food":"yayrecommended2",
-               "image":"images/chefspointreg.gif",
+               "food":"Roast Chicken",
+               "image":"images/roastchicken.jpg",
                "price":"2.40",
                "rating":"3"
             }
@@ -65,20 +65,20 @@
       },
       {
          "title":"Far East Fusion",
-         "image":"images/pastrykitchenreg.gif",
+         "image":"images/fareastfusionreg.png",
          "rating":2,
          "price":1,
          "time":"10am-6pm",
          "menu":{
             "Special":{
-               "food":"yayspecial3",
-               "image":"images/pastrykitchenreg.gif",
+               "food":"Sweet Sour Chicken",
+               "image":"images/sweetsourchicken.jpg",
                "price":"4.3",
                "rating":"5"
             },
             "Recommended":{
-               "food":"yayrecommended3",
-               "image":"images/pastrykitchenreg.gif",
+               "food":"Turkey Dinner",
+               "image":"images/turkeydinner.jpg",
                "price":"2.40",
                "rating":"3"
             }
@@ -86,20 +86,20 @@
       },
       {
          "title":"Freshens",
-         "image":"images/henrysforkreg.gif",
+         "image":"images/henrysforkreg.png",
          "rating":3,
          "price":5,
          "time":"8am-4pm",
          "menu":{
             "Special":{
-               "food":"yayspecial4",
-               "image":"images/henrysforkreg.gif",
+               "food":"Turkey Roll",
+               "image":"images/turkeyroll.jpg",
                "price":"4.3",
                "rating":"5"
             },
             "Recommended":{
-               "food":"yayrecommended4",
-               "image":"images/henrysforkreg.gif",
+               "food":"Ham Sub",
+               "image":"images/hamsub.jpg",
                "price":"2.40",
                "rating":"3"
             }
@@ -107,20 +107,20 @@
       },
       {
          "title":"Grand Teton Grill",
-         "image":"images/grandtetonreg.gif",
+         "image":"images/grandtetonreg.png",
          "rating":5,
          "price":3.3,
          "time":"10am-3pm",
          "menu":{
             "Special":{
-               "food":"yayspecial5",
-               "image":"images/grandtetonreg.gif",
+               "food":"Ribs",
+               "image":"images/ribs.jpg",
                "price":"4.3",
                "rating":"5"
             },
             "Recommended":{
-               "food":"yayrecommended5",
-               "image":"images/grandtetonreg.gif",
+               "food":"Burger",
+               "image":"images/burger.jpg",
                "price":"2.40",
                "rating":"3"
             }
@@ -128,20 +128,20 @@
       },
       {
          "title":"Salad Bar",
-         "image":"images/crepecornerreg.gif",
+         "image":"images/crepecornerreg.png",
          "rating":2,
          "price":2.3,
          "time":"5am-8pm",
          "menu":{
             "Special":{
-               "food":"yayspecial6",
-               "image":"images/pastrykitchenreg.gif",
+               "food":"Caliente Salad",
+               "image":"images/calientesalad.jpg",
                "price":"4.3",
                "rating":"5"
             },
             "Recommended":{
-               "food":"yayrecommended6",
-               "image":"images/calientereg.gif",
+               "food":"Spicy Chicken",
+               "image":"images/spicychicken.jpg",
                "price":"2.40",
                "rating":"3"
             }
@@ -149,20 +149,20 @@
       },
       {
          "title":"Stacks and Wraps",
-         "image":"images/pastrykitchenreg.gif",
+         "image":"images/pastrykitchenreg.png",
          "rating":1,
          "price":1,
          "time":"6am-8pm",
          "menu":{
             "Special":{
-               "food":"yayspecial7",
-               "image":"images/grandtetonreg.gif",
+               "food":"Alfredo Pizza",
+               "image":"images/alfredopizza.jpg",
                "price":"4.3",
                "rating":"5"
             },
             "Recommended":{
-               "food":"yayrecommended7",
-               "image":"images/henrysforkreg.gif",
+               "food":"BBQ Chicken Pizza",
+               "image":"images/bbqchickenpizza.jpg",
                "price":"2.40",
                "rating":"3"
             }
@@ -170,7 +170,7 @@
       },
       {
          "title":"Favorites",
-         "image":"images/favreg.gif",
+         "image":"images/favreg.png",
          "rating":5,
          "price":6,
          "time":"",
@@ -193,7 +193,7 @@
       },
       {
          "title":"History",
-         "image":"images/historyreg.gif",
+         "image":"images/historyreg.png",
          "rating":5,
          "price":4.6,
          "time":"",
