@@ -10,10 +10,11 @@ self.onmessage = function(param){
             var resultObj = new Object(); 
             // variable for for loop and indexes
             var indices;
+              
             // a for loop to go through the local storage object.
             for(var dish in jsonFav){
                 indices = jsonFav[dish];
-                var i = 1;
+                var i = 1;     
                 // store title of booth
                 var boothTitle = return_data.Booths[indices].title;
                 // grab booth at index
@@ -24,15 +25,14 @@ self.onmessage = function(param){
                         // dishes from the same booth. it will display:
                         // "Tuscan Valley 1" then the dish. This prevents 
                         // duplicate keys.
+                        if (resultObj[boothTitle + ' ' + i]) i++;
                         resultObj[boothTitle + ' ' + i] = new Object();
                         resultObj[boothTitle + ' ' + i].food = menu[type]['food'];
                         resultObj[boothTitle + ' ' + i].image = menu[type]['image'];
                         resultObj[boothTitle + ' ' + i].price = menu[type]['price'];
                         resultObj[boothTitle + ' ' + i].rating = menu[type]['rating'];
-                        i++;
                     }
                 }
-
                     
             }
                 

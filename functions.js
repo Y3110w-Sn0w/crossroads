@@ -218,76 +218,76 @@ function showCreateMenu(clkElement) {
     }
 
     function createHTML(menuArray){
-              // Set up variables for the HTML elements that will be created
-              var rightDiv, leftDiv, imgDish, priceElement, starsDiv, nameDish, btnImg; 
-              // Use "reflection" to get the elements inside menu in booths.json
-              for(var type in menuArray){
+      // Set up variables for the HTML elements that will be created
+      var rightDiv, leftDiv, imgDish, priceElement, starsDiv, nameDish, btnImg; 
+      // Use "reflection" to get the elements inside menu in booths.json
+      for(var type in menuArray){
 
-              // Set up variables for the menus items retrieved in menuArray
-              var menuFood, menuImage, menuPrice, menuRating;
+          // Set up variables for the menus items retrieved in menuArray
+          var menuFood, menuImage, menuPrice, menuRating;
 
-              // Get the menu element's content (NOT the index, but its content)
-              var value = menuArray[type];
+          // Get the menu element's content (NOT the index, but its content)
+          var value = menuArray[type];
 
-              // Store the elements in variables
-              menuFood = value.food;
-              menuImage = value.image;
-              menuPrice = value.price;
-              menuRating = value.rating; // ---> not being used
-              
-              // Create HTML elements and set their attributes
-              leftDiv = document.createElement('div');
-              leftDiv.className = 'menuLeftDiv';
+          // Store the elements in variables
+          menuFood = value.food;
+          menuImage = value.image;
+          menuPrice = value.price;
+          menuRating = value.rating; // ---> not being used
+                
+          // Create HTML elements and set their attributes
+          leftDiv = document.createElement('div');
+          leftDiv.className = 'menuLeftDiv';
 
-              imgDish = document.createElement('img');
-              imgDish.src = menuImage;
-              imgDish.alt = 'Picture of the dish';
+          imgDish = document.createElement('img');
+          imgDish.src = menuImage;
+          imgDish.alt = 'Picture of the dish';
 
-              priceElement = document.createElement('h2');
-              priceElement.className = 'menuPrice';
-              priceElement.innerHTML = '$' + menuPrice; 
+          priceElement = document.createElement('h2');
+          priceElement.className = 'menuPrice';
+          priceElement.innerHTML = '$' + menuPrice; 
 
-              starsDiv = document.createElement('div');
-              starsDiv.className = 'menuRating';
+          starsDiv = document.createElement('div');
+          starsDiv.className = 'menuRating';
 
-              nameDish = document.createElement('h1');
-              nameDish.className = 'menuDishName';
-              nameDish.innerHTML = menuFood;
+          nameDish = document.createElement('h1');
+          nameDish.className = 'menuDishName';
+          nameDish.innerHTML = menuFood;
 
-              rightDiv = document.createElement('div');
-              rightDiv.className = 'menuRightDiv';
-              
-              btnImg = document.createElement('img');
-              btnImg.src = '/images/favreg.gif';
-              btnImg.alt = 'Add to favorite icon';
+          rightDiv = document.createElement('div');
+          rightDiv.className = 'menuRightDiv';
+                
+          btnImg = document.createElement('img');
+          btnImg.src = '/images/favreg.gif';
+          btnImg.alt = 'Add to favorite icon';
 
-              // This is for putting data in the array for adding to favorites
-              lsinfo[menuFood] = clkElement.id;
-              btnImg.setAttribute("onclick","clicked('addFav','"+menuFood+"');");
+          // This is for putting data in the array for adding to favorites
+          lsinfo[menuFood] = clkElement.id;
+          btnImg.setAttribute("onclick","clicked('addFav','"+menuFood+"');");
 
-              // ** This is the HTML that should be created
-              // <div class="menuLeftDiv">
-              //   <img src= menuImage />
-              //   <h2 class="menuPrice"></h2>
-              //   <div class="menuRating"></div>
-              //   <h1>menuFood</h1>
-              // </div>
-              // <div class="menuRightMenu">
-              //   <img src="#">
-              // </div>
+          // ** This is the HTML that should be created
+          // <div class="menuLeftDiv">
+          //   <img src= menuImage />
+          //   <h2 class="menuPrice"></h2>
+          //   <div class="menuRating"></div>
+          //   <h1>menuFood</h1>
+          // </div>
+          // <div class="menuRightMenu">
+          //   <img src="#">
+          // </div>
 
-              // Append the elements to their parents
-                document.getElementById("menu"+clkParent.id+" "+dir).appendChild(leftDiv);
-                leftDiv.appendChild(imgDish);
-                leftDiv.appendChild(priceElement);
-                leftDiv.appendChild(starsDiv);
-                leftDiv.appendChild(nameDish);
-              
-                document.getElementById("menu"+clkParent.id+" "+dir).appendChild(rightDiv);
-                rightDiv.appendChild(btnImg); 
+          // Append the elements to their parents
+          document.getElementById("menu"+clkParent.id+" "+dir).appendChild(leftDiv);
+          leftDiv.appendChild(imgDish);
+          leftDiv.appendChild(priceElement);
+          leftDiv.appendChild(starsDiv);
+          leftDiv.appendChild(nameDish);
+                
+          document.getElementById("menu"+clkParent.id+" "+dir).appendChild(rightDiv);
+          rightDiv.appendChild(btnImg); 
                  
-            }
-          }
+      }
+    }
 }
 
 
