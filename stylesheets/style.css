@@ -86,6 +86,7 @@ html, body {
 .menuRightDiv img{
 	height: auto;
 	width: 60px;
+	background-color: transparent;
 }
 
 .menuPrice {

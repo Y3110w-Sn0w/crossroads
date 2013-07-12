@@ -6,6 +6,7 @@ var functionMap = new Object();
 functionMap.getMenu = showCreateMenu;
 functionMap.addFav = addFav;
 functionMap["getFav"] = getFav;
+functionMap["rmFav"] = removeFav;
 // to store the old parent to see if it is the same.
 var opensParent = null;
 var openDiv = null;
@@ -72,6 +73,22 @@ function clicked(cmd, element){
 
 
 
+function removeFav(dishLStitle){
+  var storeMe = new Object();
+  // see if there was data sent in to be stored.
+    if(dishLStitle){
+      //now we need to see if there is something already in LS. 
+      if(localStorage.getItem('menus')){
+        storeMe = JSON.parse(localStorage.getItem('menus'));
+        delete storeMe[dishLStitle];
+        localStorage.setItem('menus',JSON.stringify(storeMe));
+      }
+    } 
+    return;
+}
+
+
+
 function addFav(dishLStitle){
   //variable for new data that needs to be stored
     var storeMe = new Object();
@@ -88,7 +105,7 @@ function addFav(dishLStitle){
         // store the two variables from the array into the storeMe as an Object.
         storeMe[dishLStitle] = dishLS;
       }
-    }
+    } 
     //there was no data passed in so set it to null.
     else{
       storeMe = null;
@@ -258,23 +275,19 @@ function showCreateMenu(clkElement) {
           rightDiv.className = 'menuRightDiv';
                 
           btnImg = document.createElement('img');
-          btnImg.src = '/images/faved.png';
-          btnImg.alt = 'Add to favorite icon';
 
           // This is for putting data in the array for adding to favorites
           lsinfo[menuFood] = clkElement.id;
-          btnImg.setAttribute("onclick","clicked('addFav','"+menuFood+"');");
 
-          // ** This is the HTML that should be created
-          // <div class="menuLeftDiv">
-          //   <img src= menuImage />
-          //   <h2 class="menuPrice"></h2>
-          //   <div class="menuRating"></div>
-          //   <h1>menuFood</h1>
-          // </div>
-          // <div class="menuRightMenu">
-          //   <img src="#">
-          // </div>
+          if(clkElement.id != 'favorites'){
+            btnImg.setAttribute("onclick","clicked('addFav','"+menuFood+"');");
+            btnImg.src = '/images/faved.png';
+            btnImg.alt = 'Add to favorite icon';
+          }else{
+            btnImg.setAttribute("onclick","clicked('rmFav','"+menuFood+"');");
+            btnImg.src = '/images/unFav.png';
+            btnImg.alt = 'Remove from favorites icon';
+          }
 
           // Append the elements to their parents
           document.getElementById("menu"+clkParent.id+" "+dir).appendChild(leftDiv);
